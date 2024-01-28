@@ -17,6 +17,7 @@ class LoginPage extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         backgroundColor: Colors.blue,
+        centerTitle: true,
       ),
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: SingleChildScrollView(
