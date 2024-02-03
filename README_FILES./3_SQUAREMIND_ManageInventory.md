@@ -10,10 +10,25 @@
   - [Revision](../README_FILES./1_SQUAREMIND_Revision.md)     
   - [Authentication](../README_FILES./2_SQUAREMIND_Authentication.md)
   - [Manage Inventory](../README_FILES./3_SQUAREMIND_ManageInventory.md) 
+  > - [Add Product]()
+  > - [Remove Product]()
+  > - [Edit Product]()
+  > - [Record Sales]()
+  > - [Sales Report]()
   - [Cloud Integration](../README_FILES./4_SQUAREMIND_CloudInventory.md)
   </div>
 
   <div style="flex-grow: 1; padding: 1em;">
+
+  # Authentication
+  
+  # Add new item popup
+  Description
+  **Input**
+  **Process**
+  **Output**
+
+  # Data Dictionary
 <table here>
 
   </div>
