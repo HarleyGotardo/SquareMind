@@ -6,10 +6,10 @@
   <div style="background-color: #f4f4f4; padding: 1em; width: 300px;">
     <h2>Sidebar</h2>
 
-  - [Revision](#authentication)     
+  - [Revision](#Revision-Log)     
   - [Authentication](../README_FILES./SQUAREMIND_Authentication.md)
-  - [Manage Inventory](#manage-inventory) 
-  - [Cloud Integration](#cloud-integration)
+  - [Manage Inventory](../README_FILES./SQUAREMIND_ManageInventory.md) 
+  - [Cloud Integration](../README_FILES./SQUAREMIND_CloudInventory.md)
   </div>
   
   <div style="flex-grow: 1; padding: 1em;">
