@@ -13,8 +13,7 @@
   > - [Add Product](../README_FILES./2_SQUAREMIND_ManageInventory/1_AddProduct.md)
   > - [Remove Product](../README_FILES./2_SQUAREMIND_ManageInventory/2_RemoveProduct.md)
   > - [Edit Product](../README_FILES./2_SQUAREMIND_ManageInventory/3_EditProduct.md)
-  > - [Record Sales](../README_FILES./2_SQUAREMIND_ManageInventory/4_RecordSales.md)
-  > - [Sales Report](../README_FILES./2_SQUAREMIND_ManageInventory/5_SalesReport.md)
+  > - [Sales Record and Report](../README_FILES./2_SQUAREMIND_ManageInventory/4_SaleRecord_Report.md)
 
   - [Cloud Integration](../README_FILES./4_SQUAREMIND_CloudIntegration.md)
   </div>
