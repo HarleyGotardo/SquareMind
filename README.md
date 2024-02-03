@@ -17,4 +17,4 @@ samples, guidance on mobile development, and a full API reference.
 
 # Lab 1 (Progress)
 ## Markdown Website
-- [SQUAREMIND](README_FILES./1_SQUAREMIND_Revision.md)
+- [SQUAREMIND](README_FILES./MAIN_MD/1_SQUAREMIND_Revision.md)
