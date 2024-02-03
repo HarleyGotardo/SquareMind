@@ -1,24 +1,5 @@
-# QuickStock (Square Mind)
-### Project Description
-### Target: 
-
-<div style="display: flex;">
-
-  <div style="background-color: #f4f4f4; padding: 1em; width: 300px;">
-    <h2>Sidebar</h2>
-
-  - [Revision](../README_FILES./1_SQUAREMIND_Revision.md)     
-  - [Authentication](../README_FILES./2_SQUAREMIND_Authentication.md)
-  > - [Create Account](../README_FILES./1_SQUAREMIND_Authentication/1_CreateAccount.md)
-  > - [Log in](../README_FILES./1_SQUAREMIND_Authentication/2_LogIn.md)
-
-  - [Manage Inventory](../README_FILES./3_SQUAREMIND_ManageInventory.md) 
-  - [Cloud Integration](../README_FILES./4_SQUAREMIND_CloudIntegration.md)
-  </div>
-
-  <div style="flex-grow: 1; padding: 1em;">
-
-  # Create Account
+- [Authentication](../README_FILES./2_SQUAREMIND_Authentication.md) > Create Account
+# Create Account
 > This is used to register the user to an online database.
 
 ## Input:
@@ -43,8 +24,3 @@ ______
 | InvalidCredentials | Invalid username and password. | Text |..|..| Hidden |
 | RegistrationButton | Register | Button |..| Yes |..|
 | LoginButton | Log in | Button |..| Yes |..|
-
-  </div>
-</div>
-
-
