@@ -11,8 +11,8 @@
   - [Authentication](../README_FILES./2_SQUAREMIND_Authentication.md)
   - [Manage Inventory](../README_FILES./3_SQUAREMIND_ManageInventory.md) 
   - [Cloud Integration](../README_FILES./4_SQUAREMIND_CloudIntegration.md)
-  > - [Upload Data]()
-  > - [Download Data]()
+  > - [Upload Data](../README_FILES./3_SQUAREMIND_CloudIntegration/1_UploadData.md)
+  > - [Download Data](../README_FILES./3_SQUAREMIND_CloudIntegration/2_DownloadData.md)
   </div>
 
   <div style="flex-grow: 1; padding: 1em;">
