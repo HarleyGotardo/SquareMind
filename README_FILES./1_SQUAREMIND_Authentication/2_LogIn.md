@@ -9,5 +9,5 @@
   ● The user shall enter his or her password.
   ● The user shall tap the “Login” button.
 
-##Output:
+## Output:
   ● The user shall be logged into the application by the system.
