@@ -10,11 +10,12 @@
   - [Revision](../README_FILES./1_SQUAREMIND_Revision.md)     
   - [Authentication](../README_FILES./2_SQUAREMIND_Authentication.md)
   - [Manage Inventory](../README_FILES./3_SQUAREMIND_ManageInventory.md) 
-  > - [Add Product]()
-  > - [Remove Product]()
-  > - [Edit Product]()
-  > - [Record Sales]()
-  > - [Sales Report]()
+  > - [Add Product](../README_FILES./2_SQUAREMIND_ManageInventory/1_AddProduct.md)
+  > - [Remove Product](../README_FILES./2_SQUAREMIND_ManageInventory/2_RemoveProduct.md)
+  > - [Edit Product](../README_FILES./2_SQUAREMIND_ManageInventory/3_EditProduct.md)
+  > - [Record Sales](../README_FILES./2_SQUAREMIND_ManageInventory/4_RecordSales.md)
+  > - [Sales Report](../README_FILES./2_SQUAREMIND_ManageInventory/5_SalesReport.md)
+
   - [Cloud Integration](../README_FILES./4_SQUAREMIND_CloudIntegration.md)
   </div>
 
