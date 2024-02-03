@@ -7,7 +7,7 @@
     <h2>Sidebar</h2>
 
   - [Revision](#Revision-Log)     
-  - [Authentication](../MAIN_MD/1_SQUAREMIND_Authentication.md)
+  - [Authentication](../MAIN_MD/2_SQUAREMIND_Authentication.md)
   - [Manage Inventory](../MAIN_MD/1_SQUAREMIND_ManageInventory.md) 
   - [Cloud Integration](../MAIN_MD/1_SQUAREMIND_CloudIntegration.md)
   </div>
