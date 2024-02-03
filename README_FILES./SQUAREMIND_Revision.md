@@ -3,8 +3,6 @@
 ### Target: 
 
 <div style="display: flex;">
-
-  <!-- Sidebar -->
   <div style="background-color: #f4f4f4; padding: 1em; width: 300px;">
     <h2>Sidebar</h2>
 
@@ -13,11 +11,9 @@
   - [Manage Inventory](#manage-inventory) 
   - [Cloud Integration](#cloud-integration)
   </div>
-
-  <!-- Main Content -->
+  
   <div style="flex-grow: 1; padding: 1em;">
-    ## Main Content
-
+  
   # Revision Log
   
   | Date       | Document Version | Description                 | Tracking Notes | Approved By     |
