@@ -1,4 +1,4 @@
-- [Manage Inventory](../MAIN_MD/4_SQUAREMIND_UploadData.md) > Upload Data
+- [Cloud Integration](../MAIN_MD/4_SQUAREMIND_CloudIntegration.md) > Upload Data
 
 # Upload Data
 > This is used to transfer data from the application to the cloud database.
