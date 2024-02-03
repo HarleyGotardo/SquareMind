@@ -1,3 +1,5 @@
+- [Manage Inventory](../MAIN_MD/3_SQUAREMIND_ManageInventory.md) > Add Product
+
 # Remove Product
 > This is used for deleting selected product(s) from the inventory.
 
