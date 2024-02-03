@@ -9,7 +9,7 @@
     <h2>Sidebar</h2>
 
   - [Revsion](#authentication)     
-  - [Authentication](square-mind/README_FILES./SQUAREMIND_Authentication.md)
+  - [Authentication](../README_FILES./SQUAREMIND_Authentication.md)
   - [Manage Inventory](#manage-inventory) 
   - [Cloud Integration](#cloud-integration)
   </div>
