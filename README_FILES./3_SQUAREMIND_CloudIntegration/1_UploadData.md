@@ -6,3 +6,12 @@
 
 ## Output:
   ● The system shall automatically upload the data to the cloud database.
+
+______
+>
+# Data Dictionary
+| Element ID | Element Text| Element Type | Data Type | Required? | Rules |
+|------------|------------|------------|------------|------------|------------|
+| SyncButton | SyncData | Button |..|..| Must sync data from cloud to local database and vice versa |
+|  FetchButton | FetchData | Button |..|..| Gets data from cloud to local database |
+
