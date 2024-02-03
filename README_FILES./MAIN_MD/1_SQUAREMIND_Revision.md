@@ -8,8 +8,8 @@
 
   - [Revision](#Revision-Log)     
   - [Authentication](../MAIN_MD/2_SQUAREMIND_Authentication.md)
-  - [Manage Inventory](../MAIN_MD/1_SQUAREMIND_ManageInventory.md) 
-  - [Cloud Integration](../MAIN_MD/1_SQUAREMIND_CloudIntegration.md)
+  - [Manage Inventory](../MAIN_MD/3_SQUAREMIND_ManageInventory.md) 
+  - [Cloud Integration](../MAIN_MD/4_SQUAREMIND_CloudIntegration.md)
   </div>
   
   <div style="flex-grow: 1; padding: 1em;">
