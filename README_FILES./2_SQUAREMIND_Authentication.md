@@ -9,6 +9,9 @@
 
   - [Revision](../README_FILES./1_SQUAREMIND_Revision.md)     
   - [Authentication](../README_FILES./2_SQUAREMIND_Authentication.md)
+  > - [Create Account]()
+  > - [Log in]()
+
   - [Manage Inventory](../README_FILES./3_SQUAREMIND_ManageInventory.md) 
   - [Cloud Integration](../README_FILES./4_SQUAREMIND_CloudInventory.md)
   </div>
