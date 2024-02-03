@@ -1,3 +1,5 @@
+- [Manage Inventory](../MAIN_MD/3_SQUAREMIND_ManageInventory.md) > Add Product
+
 ## Product Sales Recording
 > This is used for recording the sales of the products and  used to generate a graphical representation of the total sales record.
 
