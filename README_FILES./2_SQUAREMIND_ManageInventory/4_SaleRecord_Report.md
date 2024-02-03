@@ -1,6 +1,8 @@
-- [Manage Inventory](../MAIN_MD/3_SQUAREMIND_ManageInventory.md) > Add Product
+- [Manage Inventory](../MAIN_MD/3_SQUAREMIND_ManageInventory.md) > Product Sales and Report
+![Sales Record and Report](https://github.com/HarleyGotardo/square-mind/assets/111520613/758e9eee-0936-4bdd-85d2-73d65aa01988)
 
-## Product Sales Recording
+
+## Product Sales and Report
 > This is used for recording the sales of the products and  used to generate a graphical representation of the total sales record.
 
 ## Input:
