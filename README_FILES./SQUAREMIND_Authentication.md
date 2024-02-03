@@ -7,7 +7,7 @@
   <div style="background-color: #f4f4f4; padding: 1em; width: 300px;">
     <h2>Sidebar</h2>
 
-  - [Revsion](#authentication)     
+  - [Revision](#authentication)     
   - [Authentication](#authentication)
   - [Manage Inventory](#manage-inventory) 
   - [Cloud Integration](#cloud-integration)
