@@ -1,15 +1,12 @@
-# Add Product
-> This is used for adding a product into the inventory.
+# Create Account
+> This is used to register the user to an online database.
 
 ## Input:
-  ● The user shall enter all of the product information.
+  ● The user shall fill in the credential input.
 
 ## Process:
-  ● The user shall enter the name of the product.
-  ● The user shall enter the quantity of the product.
-  ● The user shall enter the price of the product.
-  ● The user shall enter the expiration date of the product (if it is
-  expirable)
+  ● The user shall enter his or her phone number or email address.
+  ● The user shall tap the “Register” button.
 
 ## Output:
-  ● The product will be added to the inventory and visualized by the system.
+  ● The registration is filled and is submitted for verification.
