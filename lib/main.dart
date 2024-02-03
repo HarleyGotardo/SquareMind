@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:android_mims_development/screens/login_screen.dart';
-import 'package:android_mims_development/screens/registration_screen.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +18,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Roboto',
       ),
       // home: const LoginPage(),
-      home: const RegistrationPage(),
+      home: const LoginPage(),
     );
   }
 }

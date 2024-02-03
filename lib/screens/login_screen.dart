@@ -1,3 +1,4 @@
+import 'package:android_mims_development/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -8,15 +9,12 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Login Page', 
+          'Login Page',
           style: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.white
-          ),
+              fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
         centerTitle: true,
       ),
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
@@ -37,8 +35,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 48.0),
-              const SizedBox(height: 48.0),
+              const SizedBox(height: 96.0),
               const TextField(
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
@@ -70,6 +67,15 @@ class LoginPage extends StatelessWidget {
                 },
                 child: const Text('Forgot Password?'),
               ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const RegistrationPage()));
+                },
+                child: const Text('Register'),
+              )
             ],
           ),
         ),
