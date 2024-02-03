@@ -1,3 +1,5 @@
+- [Manage Inventory](../MAIN_MD/3_SQUAREMIND_ManageInventory.md)
+
 # Add Product
 > This is used for adding a product into the inventory.
 
