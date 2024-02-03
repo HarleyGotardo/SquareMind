@@ -10,7 +10,9 @@
 
 ## Process:
   ● The user shall enter his or her email address or mobile number.
+  
   ● The user shall enter his or her password.
+  
   ● The user shall tap the “Login” button.
 
 ## Output:
