@@ -1,8 +1,9 @@
-- [Manage Inventory](../MAIN_MD/3_SQUAREMIND_ManageInventory.md) > Add Product
+- [Manage Inventory](../MAIN_MD/3_SQUAREMIND_ManageInventory.md) > Edit Product
+
+<img src="https://github.com/HarleyGotardo/square-mind/assets/111520613/a1b7f193-68c4-4c41-aa7a-a44e27d04114" alt="Add Product" width="300"/>
 
 # Edit Product
 > This is used for editing a selected product from the inventory.
-
 
 ## Input:
   ● The user shall select the product from the inventory that he or she desires to alter and change the product's information.
