@@ -1,4 +1,4 @@
-- [Authentication](../README_FILES./2_SQUAREMIND_Authentication.md) > Create Account
+- [Authentication](../square-mind/README_FILES./2_SQUAREMIND_Authentication.md) > Create Account
 # Create Account
 > This is used to register the user to an online database.
 
