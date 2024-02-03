@@ -1,5 +1,8 @@
 - [Manage Inventory](../MAIN_MD/3_SQUAREMIND_ManageInventory.md) > Add Product
 
+
+<img src="https://github.com/HarleyGotardo/square-mind/assets/111520613/c805f572-ca80-496e-968d-7e0586d15fe2" alt="Add Product" width="300"/>
+
 # Add Product
 > This is used for adding a product into the inventory.
 
