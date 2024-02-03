@@ -1,5 +1,7 @@
 - [Manage Inventory](../MAIN_MD/3_SQUAREMIND_ManageInventory.md) > Add Product
 
+![Remove Product](https://github.com/HarleyGotardo/square-mind/assets/111520613/c7110ebc-9212-47f2-8545-48355f07d652)
+
 # Remove Product
 > This is used for deleting selected product(s) from the inventory.
 
