@@ -18,16 +18,5 @@
 
   <div style="flex-grow: 1; padding: 1em;">
 
-  # Authentication
-  
-  # Add new item popup
-  Description
-  **Input**
-  **Process**
-  **Output**
-
-  # Data Dictionary
-<table here>
-
   </div>
 </div>
