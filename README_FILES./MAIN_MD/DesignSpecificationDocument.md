@@ -13,3 +13,5 @@ Release Code format:
 - Increment X on major releases, zero-padded until 99.
 - Increment Y on minor releases (batched integrations and bug fixes).
 - Increment Z on new integrations and regular bug fixes, double-zero padded until 999.
+
+[Design Specification Website](../MAIN_MD/1_SQUAREMIND_Revision.md)
