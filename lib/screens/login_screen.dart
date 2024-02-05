@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
               fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         centerTitle: true,
       ),
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
