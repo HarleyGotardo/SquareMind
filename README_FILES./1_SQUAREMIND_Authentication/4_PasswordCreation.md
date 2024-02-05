@@ -1,3 +1,6 @@
+
+<img src="https://github.com/HarleyGotardo/square-mind/assets/111520613/d54545c6-4b89-4664-9570-baf741f535ee" alt="Add Product" width="300"/>
+
 ## Password Creation
 > This is used to create a password for the user’s account.
 
