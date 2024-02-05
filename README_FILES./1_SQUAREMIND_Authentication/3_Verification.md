@@ -1,3 +1,6 @@
+
+<img src="https://github.com/HarleyGotardo/square-mind/assets/111520613/f98e06c8-f52d-4fec-904e-771fba1fc6c0" alt="Add Product" width="300"/>
+
 # Verification
 > This is used to verify the user’s email address or mobile number.
 
