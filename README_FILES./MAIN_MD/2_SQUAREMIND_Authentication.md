@@ -20,3 +20,16 @@
 
   </div>
 </div>
+
+______
+>
+# Data Dictionary
+| Element ID | Element Text| Element Type | Data Type | Required? | Rules |
+|------------|------------|------------|------------|------------|------------|
+| RegistrationHeader | Register an Account for Mobile Inventory Management System Online Database | Header | Text |..|..|
+| RegisteredCredential | ContactInfornation | Text | Text | Yes | Must be a legitimate mobile number or email address|
+| VerificationCode | Verification Code | Text | Text | Yes | Must be 6 digits |
+| UserPassword | Password | Password | Text | Yes | Hidden |
+| InvalidCredentials | Invalid username and password. | Text |..|..| Hidden |
+| RegistrationButton | Register | Button |..| Yes |..|
+| LoginButton | Log in | Button |..| Yes |..|
