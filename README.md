@@ -2,4 +2,4 @@
 
 
 # Important Links:
-![Design Specs](https://github.com/HarleyGotardo/square-mind)
+![](https://github.com/HarleyGotardo/square-mind)
