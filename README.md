@@ -12,7 +12,12 @@
 - A transition from the login page to the registration page states has been implemented.
 
 ### AB.010.000
-- Insert all commit messages here…
+- Simple Login Page
+- Added "const" from line 30
+- Added appBar in Scaffold
+- Created Separate File for Login Screen
+- Added a registration screen, when the register button is pressed, it will go to the login page.
+- Added the progress during Feb. 2, 2024
 
 ## Important Links
-- Design Specs: [GitHub Repository](https://github.com/...)
+- Design Specs: [Design Specifications](https://github.com/...)
