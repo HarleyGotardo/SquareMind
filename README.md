@@ -19,4 +19,4 @@
 
 
 ## Important Links
-- Design Specs: [Design Specifications](https://github.com/...)
+- Design Specs: [Design Specifications](https://github.com/HarleyGotardo/square-mind/blob/main/README_FILES/MAIN_MD/DesignSpecificationDocument.md)
