@@ -11,9 +11,9 @@ class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
 
   // Define the colors based on the 60-30-10 rule
-  static const Color dominantColor = Color.fromARGB(255, 255, 253, 255); // Dominant color (60%)
-  static const Color secondaryColor = Color.fromARGB(255, 19, 16, 57); // Secondary color (30%)
-  static const Color accentColor = Color.fromARGB(255, 80, 191, 160); // Accent color (10%)
+  static const Color dominantColor = Color.fromARGB(255, 177, 172, 166); // Dominant color (60%)
+  static const Color secondaryColor = Color.fromARGB(255, 63, 61, 60); // Secondary color (30%)
+  static const Color accentColor = Color.fromARGB(255, 94, 82, 85); // Accent color (10%)
 
   void _onItemTapped(int index) {
     setState(() {
@@ -30,7 +30,7 @@ class _MainPageState extends State<MainPage> {
           style: TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
-            color: dominantColor, // Text color (black)
+            color: Colors.white, // Text color (black)
           ),
           textAlign: TextAlign.center,
         ),
@@ -67,7 +67,7 @@ class _MainPageState extends State<MainPage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: accentColor, // Accent color (highlight color)
+        selectedItemColor: dominantColor, // Accent color (highlight color)
         unselectedItemColor: Colors.white, // Secondary color
         onTap: _onItemTapped,
         backgroundColor: secondaryColor, // Dominant color
