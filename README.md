@@ -4,10 +4,10 @@
 | Internal Release Code    | Version | Date Released |
 |----------|------------|-------------------|
 | SM.010.000 | v1.0.0   | 2024-02-06 10:37:03 | 
-|          |            |                   | 
+| SM.020.000 | v1.1.0   | not yet officially released| 
 
 ## Releases
-### AB.010.000
+### SM.010.000
 - Implemented the Login and Registration Page UI of the system
 - A transition from the login page to the registration page states has been implemented.
 - Simple Login Page
@@ -17,6 +17,18 @@
 - Added a registration screen, when the register button is pressed, it will go to the login page.
 - Added the progress during Feb. 2, 2024
 
+## Releases
+### SM.020.000
+- Update main_page.dart with enhancements to Dashboard, Inventory Management, and SalesRecordPage
+- This commit includes several updates to the main_page.dart file:
+- Dashboard: Added card widgets.
+- Inventory Management: Added simple inventory implementation.
+- SalesRecordPage: 
+  - Added a 'date' attribute to the SalesRecord class.
+  - Updated the DataTable to include a new column for the date.
+  - Modified the AppBar title to include a sales icon and the title 'Sales Record'.
+  - Fixed an overflow issue in the DataTable by limiting the width of the columns.
+- Further enhanced the login and registration page UI.
 
 ## Important Links
 - Design Specs: [Design Specifications](https://github.com/HarleyGotardo/square-mind/blob/main/README_FILES/MAIN_MD/DesignSpecificationDocument.md)
