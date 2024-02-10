@@ -2,71 +2,140 @@ import 'package:flutter/material.dart';
 import 'login_screen.dart'; // Assuming this file exists in the specified location
 
 class RegistrationPage extends StatelessWidget {
-  const RegistrationPage({Key? key});
+  const RegistrationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: const Color.fromARGB(255, 19, 16, 57),
         title: const Text(
-          'Registration Page',
+          'QUICK STOCK by Square Minds',
           style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 255, 255, 255)),
+          textAlign: TextAlign.left,
         ),
-        centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
+        child: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/square_mind.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 40.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 24.0),
+            children: <Widget>[
+              const SizedBox(height: 80.0),
               const Text(
                 'Mobile Inventory and Sales Management System',
                 style: TextStyle(
-                  fontSize: 24.0,
+                  fontSize: 34.0,
                   fontWeight: FontWeight.bold,
-                  color: Colors.blue,
+                  color: Color.fromARGB(255, 0, 0, 0),
                 ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 96.0),
-              const TextField(
+              TextField(
                 decoration: InputDecoration(
-                  labelText: 'Email',
-                  border: OutlineInputBorder(),
-                  hintText: 'Enter your email',
+                  labelText: 'Email or Number',
+                  hintText: 'Enter your email or mobile phone number',
+                  hintStyle:
+                      const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  labelStyle:
+                      const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                    borderSide: const BorderSide(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      width: 2.0,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                    borderSide: const BorderSide(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      width: 2.0,
+                    ),
+                  ),
+                  filled: true,
+                  fillColor: const Color.fromARGB(255, 177, 172, 166),
                 ),
               ),
               const SizedBox(height: 20), // Add some space between text fields
-              const TextField(
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Username',
+                  hintText: 'Enter your username',
+                  hintStyle:
+                      const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  labelStyle:
+                      const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                    borderSide: const BorderSide(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      width: 2.0,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                    borderSide: const BorderSide(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      width: 2.0,
+                    ),
+                  ),
+                  filled: true,
+                  fillColor: const Color.fromARGB(255, 177, 172, 166),
+                ),
+              ),
+              const SizedBox(height: 20), // Add some space between text fields
+              TextField(
                 decoration: InputDecoration(
                   labelText: 'Password',
                   hintText: 'Enter your password',
-                  border: OutlineInputBorder(),
+                  hintStyle:
+                      const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  labelStyle:
+                      const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                    borderSide: const BorderSide(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      width: 2.0,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                    borderSide: const BorderSide(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      width: 2.0,
+                    ),
+                  ),
+                  filled: true,
+                  fillColor: const Color.fromARGB(255, 177, 172, 166),
                 ),
                 obscureText: true, // Passwords should be obscured
-              ),
-              const SizedBox(height: 20), // Add some space between text fields
-              const TextField(
-                decoration: InputDecoration(
-                  labelText: 'Full Name',
-                  hintText: 'Enter your full name',
-                  border: OutlineInputBorder(),
-                ),
               ),
               const SizedBox(height: 20), // Add some space between text fields
               ElevatedButton(
                 onPressed: () {
                   // Handle registration logic here
                 },
-                child: const Text('Register Account'),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color.fromRGBO(177, 172, 166, 255)),
+                ),
+                child: const Text(
+                  'Register Account',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
               const SizedBox(height: 20), // Add some space between text fields
               TextButton(
@@ -76,7 +145,11 @@ class RegistrationPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const LoginPage()),
                   );
                 },
-                child: const Text('Already have an account? Login'),
+                child: const Text('Already have an account? Login',
+                    style: TextStyle(color: Colors.white)),
+              ),
+              const SizedBox(
+                height: 200,
               ),
             ],
           ),

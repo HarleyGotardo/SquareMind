@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Inventory and Sales Management System',
       theme: ThemeData(
-        primaryColor: Colors.blue,
-        hintColor: Colors.blueAccent,
+        primaryColor: const Color.fromARGB(255, 0, 0, 0),
+        hintColor: const Color.fromARGB(255, 0, 0, 0),
         fontFamily: 'Roboto',
       ),
       // home: const LoginPage(),
