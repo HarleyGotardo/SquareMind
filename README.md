@@ -3,7 +3,7 @@
 
 | Internal Release Code    | Version | Date Released |
 |----------|------------|-------------------|
-| SM.010.000 | v1.0.0   | 2024-02-06 10:37:03 | 
+| SM.010.000 | v1.0.0   | 2024-02-06 22:37:03 | 
 | SM.020.000 | v1.1.0   | not yet officially released| 
 
 ## Releases
