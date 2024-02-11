@@ -17,7 +17,6 @@
 - Added a registration screen, when the register button is pressed, it will go to the login page.
 - Added the progress during Feb. 2, 2024
 
-## Releases
 ### SM.020.000
 - Update main_page.dart with enhancements to Dashboard, Inventory Management, and SalesRecordPage
 - This commit includes several updates to the main_page.dart file:
@@ -29,6 +28,7 @@
   - Modified the AppBar title to include a sales icon and the title 'Sales Record'.
   - Fixed an overflow issue in the DataTable by limiting the width of the columns.
 - Further enhanced the login and registration page UI.
+- Separates the different screen files for the main page.
 
 ## Important Links
 - Design Specs: [Design Specifications](https://github.com/HarleyGotardo/square-mind/blob/main/README_FILES/MAIN_MD/DesignSpecificationDocument.md)
