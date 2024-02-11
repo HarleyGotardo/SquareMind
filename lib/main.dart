@@ -18,8 +18,7 @@ class MyApp extends StatelessWidget {
         hintColor: const Color.fromRGBO(0, 151, 178, 100),
         fontFamily: 'Roboto',
       ),
-      // home: const LoginPage(),
-      home: MainPage(),
+      home: const LoginPage(),
     );
   }
 }

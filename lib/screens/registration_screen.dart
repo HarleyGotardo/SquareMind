@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login_screen.dart'; // Assuming this file exists in the specified location
+import 'package:android_mims_development/screens/login_screen.dart';
 
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({Key? key});
