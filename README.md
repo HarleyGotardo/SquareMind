@@ -29,6 +29,7 @@
   - Fixed an overflow issue in the DataTable by limiting the width of the columns.
 - Further enhanced the login and registration page UI.
 - Separates the different screen files for the main page.
+- Added more widgets in Inventory Management and Cloud Integration Page.
 
 ## Important Links
 - Design Specs: [Design Specifications](https://github.com/HarleyGotardo/square-mind/blob/main/README_FILES/MAIN_MD/DesignSpecificationDocument.md)
