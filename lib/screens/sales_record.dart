@@ -48,6 +48,9 @@ class SalesRecordPage extends StatelessWidget {
               onPressed: () {
                 // Navigate to the page to record a sold item
               },
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 63, 61, 60)),
+              ),
               child: const Text('Record a Sold Item'),
             ),
             const SizedBox(height: 16.0),

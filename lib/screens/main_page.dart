@@ -41,6 +41,39 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: secondaryColor, // Secondary color
         centerTitle: true, // Aligns title to center
       ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: secondaryColor,
+              ),
+              child: Text(
+                'Menu',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.account_circle),
+              title: const Text('Profile'),
+              onTap: () {
+                // TODO: Navigate to Profile
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
+              onTap: () {
+                // TODO: Navigate to Settings
+              },
+            ),
+          ],
+        ),
+      ),
       backgroundColor: dominantColor, // Dominant color
       body: _getPage(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
@@ -85,7 +118,7 @@ class _MainPageState extends State<MainPage> {
       case 0:
         return const DashboardPage();
       case 1:
-        return InventoryPage();
+        return const InventoryPage();
       case 2:
         return SalesRecordPage();
       case 3:
