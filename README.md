@@ -17,7 +17,7 @@
 - Added a registration screen, when the register button is pressed, it will go to the login page.
 - Added the progress during Feb. 2, 2024
 
-### SM.020.000
+### SM.020.004
 - Update main_page.dart with enhancements to Dashboard, Inventory Management, and SalesRecordPage
 - This commit includes several updates to the main_page.dart file:
 - Dashboard: Added card widgets.
