@@ -14,7 +14,7 @@
 - Added "const" from line 30
 - Added appBar in Scaffold
 - Created Separate File for Login Screen
-- Added a registration screen, when the register button is pressed, it will go to the login page.
+- Added a registration screen, when the register button is pressed, it will go to the login page. 
 - Added the progress during Feb. 2, 2024
 
 ### SM.020.004
