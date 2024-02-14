@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'login_screen.dart'; // Assuming this file exists in the specified location
 import 'package:android_mims_development/services/database_helper.dart';
 import 'package:android_mims_development/model/user_model.dart';
+// ignore: depend_on_referenced_packages
 import 'package:crypto/crypto.dart';
 import 'dart:convert'; // for the utf8.encode method
 
 class RegistrationPage extends StatefulWidget {
-  const RegistrationPage({Key? key}) : super(key: key);
+  const RegistrationPage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _RegistrationPageState createState() => _RegistrationPageState();
 }
 
@@ -104,8 +106,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 ),
                 const SizedBox(
                     height: 20), // Add some space between text fields
-                TextField(
+                TextFormField(
                   controller: _usernameController,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter your username';
+                    }
+                    return null;
+                    // You can add more validation logic here if needed
+                  },
                   decoration: InputDecoration(
                     labelText: 'Username',
                     hintText: 'Enter your username',
@@ -133,8 +142,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 ),
                 const SizedBox(
                     height: 20), // Add some space between text fields
-                TextField(
+                TextFormField(
                   controller: _passwordController,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter your username';
+                    }
+                    return null;
+                    // You can add more validation logic here if needed
+                  },
                   decoration: InputDecoration(
                     labelText: 'Password',
                     hintText: 'Enter your password',
@@ -177,11 +193,19 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         await dbHelper.emailOrNumberExists(emailOrNumber);
                     if (emailOrNumberExists) {
                       // Show an error message
+                      // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                            content: Text('Email or number already exists')),
+                        const SnackBar(
+                            content: Text('Email or number already exists!')),
                       );
                       return;
+                    } else {
+                      // ignore: use_build_context_synchronously
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text(
+                                'Succesfully created account. Please login to continue!')),
+                      );
                     }
 
                     String hashedPassword = hashPassword(password);
@@ -192,6 +216,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     );
 
                     dbHelper.insert(user);
+                    // ignore: use_build_context_synchronously
                     Navigator.push(
                       context,
                       MaterialPageRoute(

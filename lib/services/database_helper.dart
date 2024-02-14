@@ -70,4 +70,25 @@ class DatabaseHelper {
         .query("User", where: "emailOrNumber = ?", whereArgs: [emailOrNumber]);
     return result.isNotEmpty;
   }
+
+  Future<bool> checkLogin(String username, String password) async {
+    final db = await database;
+    var result = await db.query("User",
+        where: "username = ? AND password = ?",
+        whereArgs: [username, password]);
+    return result.isNotEmpty;
+  }
+
+  Future<void> clearDatabase() async {
+    final db = await database;
+    await db.close(); // Close the database
+
+    // Delete the database
+    var databasesPath = await getDatabasesPath();
+    String path = join(databasesPath, '_databaseName.db');
+    await deleteDatabase(path);
+
+    // Recreate the database
+    _database = await _initDatabase();
+  }
 }
