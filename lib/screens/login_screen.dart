@@ -7,9 +7,10 @@ import 'package:crypto/crypto.dart';
 import 'dart:convert'; // for the utf8.encode method
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginPageState createState() => _LoginPageState();
 }
 
