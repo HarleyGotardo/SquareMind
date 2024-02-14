@@ -63,7 +63,9 @@ class _InventoryPageState extends State<InventoryPage> {
   @override
   Widget build(BuildContext context) {
     final filteredItems = items
-        .where((item) => item['Item Name']!.toLowerCase().contains(searchQuery.toLowerCase()))
+        .where((item) => item['Item Name']!
+            .toLowerCase()
+            .contains(searchQuery.toLowerCase()))
         .toList();
 
     return Scaffold(
@@ -98,7 +100,8 @@ class _InventoryPageState extends State<InventoryPage> {
             Expanded(
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // Change this number to adjust the number of items in a row
+                  crossAxisCount:
+                      2, // Change this number to adjust the number of items in a row
                   childAspectRatio: 1.0,
                 ),
                 itemCount: filteredItems.length,
@@ -119,14 +122,19 @@ class _InventoryPageState extends State<InventoryPage> {
                       );
                     },
                     child: Card(
-                      color: const Color.fromARGB(255, 63, 61, 60), // Change the color of the square
+                      color: const Color.fromARGB(
+                          255, 63, 61, 60), // Change the color of the square
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0), // Add a border radius to the square
+                        borderRadius: BorderRadius.circular(
+                            15.0), // Add a border radius to the square
                       ),
                       child: Center(
                         child: Text(
                           filteredItems[index]['Item Name']!,
-                          style: const TextStyle(fontSize: 24, color: Colors.white), // Change the color of the text
+                          style: const TextStyle(
+                              fontSize: 24,
+                              color:
+                                  Colors.white), // Change the color of the text
                         ),
                       ),
                     ),

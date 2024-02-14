@@ -15,9 +15,10 @@ class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
 
   // Define the colors based on the 60-30-10 rule
-  static const Color dominantColor = Color.fromARGB(255, 177, 172, 166); // Dominant color (60%)
-  static const Color secondaryColor = Color.fromARGB(255, 63, 61, 60); // Secondary color (30%)
-  static const Color accentColor = Color.fromARGB(255, 94, 82, 85); // Accent color (10%)
+  static const Color dominantColor =
+      Color.fromARGB(255, 177, 172, 166); // Dominant color (60%)
+  static const Color secondaryColor =
+      Color.fromARGB(255, 63, 61, 60); // Secondary color (30%)
 
   void _onItemTapped(int index) {
     setState(() {
@@ -69,6 +70,13 @@ class _MainPageState extends State<MainPage> {
               title: const Text('Settings'),
               onTap: () {
                 // TODO: Navigate to Settings
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text('Logout'),
+              onTap: () {
+                // TODO: Implement logout functionality
               },
             ),
           ],

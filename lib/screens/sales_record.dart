@@ -19,8 +19,10 @@ class SalesRecordPage extends StatelessWidget {
   SalesRecordPage({Key? key}) : super(key: key);
 
   final List<SalesRecord> salesRecords = [
-    SalesRecord(date: DateTime.now(), itemName: 'Item 1', quantity: 2, price: 100.0),
-    SalesRecord(date: DateTime.now(), itemName: 'Item 2', quantity: 1, price: 50.0),
+    SalesRecord(
+        date: DateTime.now(), itemName: 'Item 1', quantity: 2, price: 100.0),
+    SalesRecord(
+        date: DateTime.now(), itemName: 'Item 2', quantity: 1, price: 50.0),
   ];
 
   @override
@@ -49,7 +51,8 @@ class SalesRecordPage extends StatelessWidget {
                 // Navigate to the page to record a sold item
               },
               style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 63, 61, 60)),
+                foregroundColor: MaterialStateProperty.all<Color>(
+                    const Color.fromARGB(255, 63, 61, 60)),
               ),
               child: const Text('Record a Sold Item'),
             ),
@@ -57,56 +60,64 @@ class SalesRecordPage extends StatelessWidget {
             Expanded(
               child: SingleChildScrollView(
                 child: DataTable(
-  columnSpacing: 12.0,
-  columns: const <DataColumn>[
-    DataColumn(
-      label: SizedBox(
-        width: 100.0, // LIMIT THE WIDTH OF THE COLUMN
-        child: Text(
-          'Item Name',
-          style: TextStyle(fontStyle: FontStyle.italic),
-        ),
-      ),
-    ),
-    DataColumn(
-      label: SizedBox(
-        width: 80.0, // LIMIT THE WIDTH OF THE COLUMN
-        child: Text(
-          'Date',
-          style: TextStyle(fontStyle: FontStyle.italic),
-        ),
-      ),
-    ),
-    DataColumn(
-      label: SizedBox(
-        width: 60.0, // LIMIT THE WIDTH OF THE COLUMN
-        child: Text(
-          'Quantity',
-          style: TextStyle(fontStyle: FontStyle.italic),
-        ),
-      ),
-    ),
-    DataColumn(
-      label: SizedBox(
-        width: 60.0, // LIMIT THE WIDTH OF THE COLUMN
-        child: Text(
-          'Price',
-          style: TextStyle(fontStyle: FontStyle.italic),
-        ),
-      ),
-    ),
-  ],
-  rows: salesRecords.map((record) {
-    return DataRow(
-      cells: <DataCell>[
-        DataCell(SizedBox(width: 100.0, child: Text(record.itemName))),
-        DataCell(SizedBox(width: 80.0, child: Text(DateFormat('yyyy-MM-dd').format(record.date)))),
-        DataCell(SizedBox(width: 60.0, child: Text(record.quantity.toString()))),
-        DataCell(SizedBox(width: 60.0, child: Text(record.price.toStringAsFixed(2)))),
-      ],
-    );
-  }).toList(),
-),
+                  columnSpacing: 12.0,
+                  columns: const <DataColumn>[
+                    DataColumn(
+                      label: SizedBox(
+                        width: 100.0, // LIMIT THE WIDTH OF THE COLUMN
+                        child: Text(
+                          'Item Name',
+                          style: TextStyle(fontStyle: FontStyle.italic),
+                        ),
+                      ),
+                    ),
+                    DataColumn(
+                      label: SizedBox(
+                        width: 80.0, // LIMIT THE WIDTH OF THE COLUMN
+                        child: Text(
+                          'Date',
+                          style: TextStyle(fontStyle: FontStyle.italic),
+                        ),
+                      ),
+                    ),
+                    DataColumn(
+                      label: SizedBox(
+                        width: 60.0, // LIMIT THE WIDTH OF THE COLUMN
+                        child: Text(
+                          'Quantity',
+                          style: TextStyle(fontStyle: FontStyle.italic),
+                        ),
+                      ),
+                    ),
+                    DataColumn(
+                      label: SizedBox(
+                        width: 60.0, // LIMIT THE WIDTH OF THE COLUMN
+                        child: Text(
+                          'Price',
+                          style: TextStyle(fontStyle: FontStyle.italic),
+                        ),
+                      ),
+                    ),
+                  ],
+                  rows: salesRecords.map((record) {
+                    return DataRow(
+                      cells: <DataCell>[
+                        DataCell(SizedBox(
+                            width: 100.0, child: Text(record.itemName))),
+                        DataCell(SizedBox(
+                            width: 80.0,
+                            child: Text(
+                                DateFormat('yyyy-MM-dd').format(record.date)))),
+                        DataCell(SizedBox(
+                            width: 60.0,
+                            child: Text(record.quantity.toString()))),
+                        DataCell(SizedBox(
+                            width: 60.0,
+                            child: Text(record.price.toStringAsFixed(2)))),
+                      ],
+                    );
+                  }).toList(),
+                ),
               ),
             ),
           ],

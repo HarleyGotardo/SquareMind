@@ -35,7 +35,8 @@ class CloudPage extends StatelessWidget {
                     icon: const Icon(Icons.cloud_upload),
                     label: const Text('Sync Data'),
                     style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 63, 61, 60)),
+                      foregroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromARGB(255, 63, 61, 60)),
                     ),
                   ),
                   ElevatedButton.icon(
@@ -45,7 +46,8 @@ class CloudPage extends StatelessWidget {
                     icon: const Icon(Icons.cloud_download),
                     label: const Text('Download Data'),
                     style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 63, 61, 60)),
+                      foregroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromARGB(255, 63, 61, 60)),
                     ),
                   ),
                 ],
