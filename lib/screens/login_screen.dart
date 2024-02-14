@@ -1,8 +1,16 @@
 import 'package:android_mims_development/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +54,7 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 96.0),
               TextField(
+                controller: _usernameController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   hintText: 'Enter your username',
@@ -74,6 +83,7 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 8.0),
               TextField(
+                controller: _passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: 'Enter your password',

@@ -1,16 +1,21 @@
 class User {
-  final String number;
+  final String emailOrNumber;
   final String username;
   final String password;
 
-  const User(
-      {required this.number, required this.username, required this.password});
+  User(
+      {required this.emailOrNumber,
+      required this.username,
+      required this.password});
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
-      number: json['number'],
+  factory User.fromMap(Map<String, dynamic> json) => User(
+      emailOrNumber: json['emailOrNumber'],
       username: json['username'],
       password: json['password']);
 
-  Map<String, dynamic> toJson() =>
-      {'number': number, 'username': username, 'password': password};
+  Map<String, dynamic> toJson() => {
+        'emailOrNumber': emailOrNumber,
+        'username': username,
+        'password': password
+      };
 }
