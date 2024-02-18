@@ -3,7 +3,7 @@ import 'package:android_mims_development/screens/dashboard.dart';
 import 'package:android_mims_development/screens/inventory_management.dart';
 import 'package:android_mims_development/screens/sales_record.dart';
 import 'package:android_mims_development/screens/cloud_integration.dart';
-
+import 'package:android_mims_development/screens/settings.dart'; // Import the SettingsPage
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
@@ -69,7 +69,19 @@ class _MainPageState extends State<MainPage> {
               leading: const Icon(Icons.settings),
               title: const Text('Settings'),
               onTap: () {
-                // TODO: Navigate to Settings
+                Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    transitionDuration: const Duration(milliseconds: 500), // Set the duration of the animation
+                    pageBuilder: (context, animation, secondaryAnimation) => SettingsPage(),
+                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                        opacity: animation,
+                        child: child,
+                      );
+                    },
+                  ),
+                );
               },
             ),
             ListTile(
@@ -77,6 +89,8 @@ class _MainPageState extends State<MainPage> {
               title: const Text('Logout'),
               onTap: () {
                 // TODO: Implement logout functionality
+                // Add your logout logic here
+                // For example, you can clear user session, navigate to login screen, etc.
               },
             ),
           ],

@@ -15,9 +15,14 @@ class SalesRecord {
   });
 }
 
-class SalesRecordPage extends StatelessWidget {
+class SalesRecordPage extends StatefulWidget {
   SalesRecordPage({Key? key}) : super(key: key);
 
+  @override
+  _SalesRecordPageState createState() => _SalesRecordPageState();
+}
+
+class _SalesRecordPageState extends State<SalesRecordPage> {
   final List<SalesRecord> salesRecords = [
     SalesRecord(
         date: DateTime.now(), itemName: 'Item 1', quantity: 2, price: 100.0),
