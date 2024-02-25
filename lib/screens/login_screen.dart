@@ -13,8 +13,14 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey();
+
+  final FocusNode _focusNodePassword = FocusNode();
+  final TextEditingController _controllerUsername = TextEditingController();
+  final TextEditingController _controllerPassword = TextEditingController();
+
+  bool _obscurePassword = true;
+
   final dbHelper = DatabaseHelper.instance;
 
   String hashPassword(String password) {
@@ -26,145 +32,126 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 40.0),
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      body: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(30.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              const SizedBox(
-                height: 100.0,
+            children: [
+              const SizedBox(height: 150),
+              Text(
+                "Quick Stock",
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
-              const Text(
-                'Quick Stock',
-                style: TextStyle(
-                  fontSize: 34.0,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 63, 61, 60),
-                ),
-                textAlign: TextAlign.center,
+              const SizedBox(height: 10),
+              Text(
+                "Login to your account",
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
-              const SizedBox(height: 24.0),
-              const Text(
-                'Login to your account',
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.normal,
-                  color: Color.fromARGB(255, 63, 61, 60),
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 72.0),
-              TextField(
-                controller: _usernameController,
-                keyboardType: TextInputType.emailAddress,
+              const SizedBox(height: 60),
+              TextFormField(
+                controller: _controllerUsername,
+                keyboardType: TextInputType.name,
                 decoration: InputDecoration(
-                  hintText: 'Enter your username',
-                  labelText: 'Username',
+                  labelText: "Username",
+                  prefixIcon: const Icon(Icons.person_outline),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                    borderSide: const BorderSide(
-                      color: Colors.black,
-                      width: 2.0,
-                    ),
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                    borderSide: const BorderSide(
-                      color: Colors.black,
-                      width: 2.0,
-                    ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  filled: true,
-                  fillColor: const Color.fromRGBO(177, 172, 166, 255),
                 ),
+                onEditingComplete: () => _focusNodePassword.requestFocus(),
               ),
-              const SizedBox(height: 8.0),
-              TextField(
-                controller: _passwordController,
-                obscureText: true,
+              const SizedBox(height: 10),
+              TextFormField(
+                controller: _controllerPassword,
+                focusNode: _focusNodePassword,
+                obscureText: _obscurePassword,
+                keyboardType: TextInputType.visiblePassword,
                 decoration: InputDecoration(
-                  hintText: 'Enter your password',
-                  labelText: 'Password',
+                  labelText: "Password",
+                  prefixIcon: const Icon(Icons.password_outlined),
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _obscurePassword = !_obscurePassword;
+                        });
+                      },
+                      icon: _obscurePassword
+                          ? const Icon(Icons.visibility_outlined)
+                          : const Icon(Icons.visibility_off_outlined)),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                    borderSide: const BorderSide(
-                      color: Colors.black,
-                      width: 2.0,
-                    ),
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                    borderSide: const BorderSide(
-                      color: Colors.black,
-                      width: 2.0,
-                    ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  filled: true,
-                  fillColor: const Color.fromRGBO(177, 172, 166, 255),
                 ),
               ),
-              const SizedBox(height: 24.0),
-              ElevatedButton(
-                onPressed: () async {
-                  String username = _usernameController.text;
-                  String password = _passwordController.text;
-                  String hashedPassword = hashPassword(password);
-                  bool loginSuccessful =
-                      await dbHelper.checkLogin(username, hashedPassword);
-                  if (loginSuccessful) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const MainPage()),
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Login successful')),
-                    );
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Invalid username or password')),
-                    );
-                  }
-                },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                    Colors.blue, // Set the button color to blue
-                  ),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10), // Remove rounded corners
+              const SizedBox(height: 60),
+              Column(
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
+                    onPressed: () async {
+                      String username = _controllerUsername.text;
+                      String password = _controllerPassword.text;
+                      String hashedPassword = hashPassword(password);
+                      bool loginSuccessful =
+                          await dbHelper.checkLogin(username, hashedPassword);
+                      if (loginSuccessful) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const MainPage()),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Login successful')),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Invalid username or password')),
+                        );
+                      }
+                    },
+                    child: const Text("Login"),
                   ),
-                ),
-                child: const Text(
-                  'LOGIN',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const RegistrationPage()),
-                  );
-                },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                    const Color.fromRGBO(177, 172, 166, 255),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("Don't have an account?"),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const RegistrationPage()),
+                          );
+                        },
+                        child: const Text("Signup"),
+                      ),
+                    ],
                   ),
-                ),
-                child: const Text(
-                  'No account? Register',
-                  style: TextStyle(color: Color.fromARGB(255, 23, 6, 6)),
-                ),
+                ],
               ),
-              const SizedBox(height: 16.0)
             ],
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _focusNodePassword.dispose();
+    _controllerUsername.dispose();
+    _controllerPassword.dispose();
+    super.dispose();
   }
 }

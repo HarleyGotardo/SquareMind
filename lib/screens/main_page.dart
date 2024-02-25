@@ -20,8 +20,8 @@ class _MainPageState extends State<MainPage> {
   // Define the colors based on the 60-30-10 rule
   static const Color dominantColor =
       Color.fromARGB(255, 177, 172, 166); // Dominant color (60%)
-  static const Color secondaryColor =
-      Color.fromARGB(255, 63, 61, 60); // Secondary color (30%)
+  // static const Color secondaryColor =
+      // Color.fromARGB(255, 63, 61, 60); // Secondary color (30%)
 
   void _onItemTapped(int index) {
     setState(() {
@@ -37,12 +37,12 @@ class _MainPageState extends State<MainPage> {
           'Quick Stock',
           style: TextStyle(
             fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.white, // Text color (black)
+            fontWeight: FontWeight.normal,
+            color: Color.fromARGB(255, 0, 0, 0), // Text color (black)
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: const Color.fromARGB(100 ,0, 149, 176),
+        backgroundColor: const Color.fromARGB(100 , 234, 221, 255),
         centerTitle: true, // Aligns title to center
       ),
       drawer: Drawer(
@@ -51,12 +51,12 @@ class _MainPageState extends State<MainPage> {
           children: <Widget>[
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Color.fromARGB(100, 0, 149, 176),
+                color: Color.fromARGB(100 , 234, 221, 255),
               ),
               child: Text(
                 'Menu',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 0, 0, 0),
                   fontSize: 24,
                   fontWeight: FontWeight.bold
                 ),
@@ -170,13 +170,13 @@ class _MainPageState extends State<MainPage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: const Color.fromARGB(255, 255, 255, 255), // Accent color (highlight color)
+        selectedItemColor: Color.fromARGB(255, 0, 0, 0), // Accent color (highlight color)
         selectedFontSize: double.parse('15.0'),
         selectedIconTheme: const IconThemeData(size: 30.0),
         selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-        unselectedItemColor: Colors.white, // Secondary color
+        unselectedItemColor: Color.fromARGB(255, 0, 0, 0), // Secondary color
         onTap: _onItemTapped,
-        backgroundColor: const Color.fromARGB(100, 0, 149, 176), // Dominant color
+        backgroundColor: const Color.fromARGB(100 , 234, 221, 255), // Dominant color
         type: BottomNavigationBarType.fixed, // Ensures all labels are visible
       ),
     );

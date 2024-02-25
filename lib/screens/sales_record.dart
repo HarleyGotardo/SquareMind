@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:android_mims_development/screens/record.dart';
 
 class SalesRecord {
   final DateTime date;
@@ -34,7 +35,8 @@ class _SalesRecordPageState extends State<SalesRecordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Expanded(
+        automaticallyImplyLeading: false,
+        title: const Center(
           child: Row(
             children: [
               Icon(Icons.sell, size: 32.0),
@@ -54,6 +56,10 @@ class _SalesRecordPageState extends State<SalesRecordPage> {
             ElevatedButton(
               onPressed: () {
                 // Navigate to the page to record a sold item
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RecordSale()),
+                );
               },
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(
