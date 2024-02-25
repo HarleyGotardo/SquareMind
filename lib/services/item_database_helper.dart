@@ -64,12 +64,12 @@ class DatabaseHelper {
     return list;
   }
 
-  Future<int> update(Item item) async {
-    Database db = await instance.database;
-    int? id = item.id();
-    return await db
-        .update(table, item.toJson(), where: '$columnId = ?', whereArgs: [id]);
-  }
+  // Future<int> update(Item item) async {
+  //   Database db = await instance.database;
+  //   int? id = item.id();
+  //   return await db
+  //       .update(table, item.toJson(), where: '$columnId = ?', whereArgs: [id]);
+  // }
 
   Future<int> delete(int id) async {
     Database db = await instance.database;

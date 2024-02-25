@@ -5,6 +5,7 @@ import 'package:android_mims_development/screens/sales_record.dart';
 import 'package:android_mims_development/screens/cloud_integration.dart';
 import 'package:android_mims_development/screens/settings.dart';
 import 'login_screen.dart';
+import 'package:android_mims_development/screens/profile.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -41,7 +42,7 @@ class _MainPageState extends State<MainPage> {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: secondaryColor, // Secondary color
+        backgroundColor: const Color.fromARGB(100 ,0, 149, 176),
         centerTitle: true, // Aligns title to center
       ),
       drawer: Drawer(
@@ -50,13 +51,14 @@ class _MainPageState extends State<MainPage> {
           children: <Widget>[
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: secondaryColor,
+                color: Color.fromARGB(100, 0, 149, 176),
               ),
               child: Text(
                 'Menu',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
+                  fontWeight: FontWeight.bold
                 ),
               ),
             ),
@@ -64,7 +66,21 @@ class _MainPageState extends State<MainPage> {
               leading: const Icon(Icons.account_circle),
               title: const Text('Profile'),
               onTap: () {
-                // TODO: Navigate to Profile
+                                Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    transitionDuration: const Duration(
+                        milliseconds: 500), // Set the duration of the animation
+                    pageBuilder: (context, animation, secondaryAnimation) =>
+                        const ProfileScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                        opacity: animation,
+                        child: child,
+                      );
+                    },
+                  ),);
               },
             ),
             ListTile(
@@ -93,9 +109,31 @@ class _MainPageState extends State<MainPage> {
               leading: const Icon(Icons.logout),
               title: const Text('Logout'),
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Confirmation'),
+                      content: const Text('Are you sure you want to log out?'),
+                      actions: <Widget>[
+                        TextButton(
+                          child: const Text('No'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        TextButton(
+                          child: const Text('Yes'),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const LoginPage()),
+                            );
+                          },
+                        ),
+                      ],
+                    );
+                  },
                 );
               },
             ),
@@ -132,10 +170,13 @@ class _MainPageState extends State<MainPage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: dominantColor, // Accent color (highlight color)
+        selectedItemColor: const Color.fromARGB(255, 255, 255, 255), // Accent color (highlight color)
+        selectedFontSize: double.parse('15.0'),
+        selectedIconTheme: const IconThemeData(size: 30.0),
+        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
         unselectedItemColor: Colors.white, // Secondary color
         onTap: _onItemTapped,
-        backgroundColor: secondaryColor, // Dominant color
+        backgroundColor: const Color.fromARGB(100, 0, 149, 176), // Dominant color
         type: BottomNavigationBarType.fixed, // Ensures all labels are visible
       ),
     );
