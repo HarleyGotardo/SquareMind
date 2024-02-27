@@ -3,6 +3,7 @@ import 'package:android_mims_development/model/user_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
+/// A helper class for managing the SQLite database.
 class DatabaseHelper {
   static const _databaseName = "MyDatabase.db";
   static const _databaseVersion = 1;
@@ -19,6 +20,8 @@ class DatabaseHelper {
 
   // only have a single app-wide reference to the database
   static Database? _database;
+
+  /// Returns the instance of the database.
   Future<Database> get database async {
     if (_database != null) return _database!;
     _database = await _initDatabase();
@@ -26,12 +29,13 @@ class DatabaseHelper {
   }
 
   // this opens the database (and creates it if it doesn't exist)
-  _initDatabase() async {
+  Future _initDatabase() async {
     String path = join(await getDatabasesPath(), _databaseName);
     return await openDatabase(path,
         version: _databaseVersion, onCreate: _onCreate);
   }
 
+  /// Creates the user table when the database is created.
   Future _onCreate(Database db, int version) async {
     await db.execute('''
           CREATE TABLE $table (
@@ -44,11 +48,13 @@ class DatabaseHelper {
 
   // Helper methods
 
+  /// Inserts a user into the database.
   Future<int> insert(User user) async {
     Database db = await instance.database;
     return await db.insert(table, user.toJson());
   }
 
+  /// Retrieves all users from the database.
   Future<List<User>> queryAllRows() async {
     Database db = await instance.database;
     final List<Map<String, dynamic>> maps = await db.query(table);
@@ -58,12 +64,14 @@ class DatabaseHelper {
     });
   }
 
+  /// Deletes a user from the database based on the email or number.
   Future<int> delete(String emailOrNumber) async {
     Database db = await instance.database;
     return await db.delete(table,
         where: '$columnEmailOrNumber = ?', whereArgs: [emailOrNumber]);
   }
 
+  /// Checks if an email or number exists in the database.
   Future<bool> emailOrNumberExists(String emailOrNumber) async {
     final db = await database;
     var result = await db
@@ -71,6 +79,7 @@ class DatabaseHelper {
     return result.isNotEmpty;
   }
 
+  /// Checks if a username and password combination is valid for login.
   Future<bool> checkLogin(String username, String password) async {
     final db = await database;
     var result = await db.query("User",
@@ -79,6 +88,7 @@ class DatabaseHelper {
     return result.isNotEmpty;
   }
 
+  /// Clears the entire database.
   Future<void> clearDatabase() async {
     final db = await database;
     await db.close(); // Close the database
