@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:android_mims_development/services/item_database_helper.dart';
+//import 'package:share/share.dart';
 
 class CloudPage extends StatefulWidget {
-  const CloudPage({Key? key}) : super(key: key);
+  const CloudPage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _CloudPageState createState() => _CloudPageState();
 }
 
 class _CloudPageState extends State<CloudPage> {
+  //final dbHelper = ItemDatabaseHelper.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,9 +39,7 @@ class _CloudPageState extends State<CloudPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ElevatedButton.icon(
-                    onPressed: () {
-                      // TODO: Implement sync data to cloud
-                    },
+                    onPressed: () {},
                     icon: const Icon(Icons.cloud_upload),
                     label: const Text('Sync Data'),
                     style: ButtonStyle(
