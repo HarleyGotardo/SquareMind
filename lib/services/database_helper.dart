@@ -99,6 +99,17 @@ class DatabaseHelper {
     }
   }
 
+  Future<Object?> getUserEmail(String username) async {
+    final db = await database;
+    var result =
+        await db.query("User", where: "username = ?", whereArgs: [username]);
+    if (result.isNotEmpty) {
+      return result.first['emailOrNumber']; // Accessing the 'email' column
+    } else {
+      throw Exception('User not found');
+    }
+  }
+
   /// Clears the entire database.
   Future<void> clearDatabase() async {
     final db = await database;
