@@ -1,14 +1,18 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:android_mims_development/screens/main_page.dart';
 import 'package:android_mims_development/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:android_mims_development/services/database_helper.dart';
+// ignore: depend_on_referenced_packages
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginPageState createState() => _LoginPageState();
 }
 
@@ -108,16 +112,20 @@ class _LoginPageState extends State<LoginPage> {
                       bool loginSuccessful =
                           await dbHelper.checkLogin(username, hashedPassword);
                       if (loginSuccessful) {
+                        Object? email = await dbHelper.getUserEmail(username);
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const MainPage()),
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  MainPage(email: email.toString())),
                         );
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Login successful')),
                         );
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Invalid username or password')),
+                          const SnackBar(
+                              content: Text('Invalid username or password')),
                         );
                       }
                     },
@@ -131,7 +139,8 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const RegistrationPage()),
+                            MaterialPageRoute(
+                                builder: (context) => const RegistrationPage()),
                           );
                         },
                         child: const Text("Signup"),

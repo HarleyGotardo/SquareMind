@@ -5,7 +5,7 @@ import 'package:path/path.dart';
 
 /// A helper class for managing the SQLite database.
 class DatabaseHelper {
-  static const _databaseName = "MyDatabase.db";
+  static const _databaseName = "User.db";
   static const _databaseVersion = 1;
 
   static const table = 'user';
@@ -86,6 +86,17 @@ class DatabaseHelper {
         where: "username = ? AND password = ?",
         whereArgs: [username, password]);
     return result.isNotEmpty;
+  }
+
+  Future<Object?> getUserEmail(String username) async {
+    final db = await database;
+    var result =
+        await db.query("User", where: "username = ?", whereArgs: [username]);
+    if (result.isNotEmpty) {
+      return result.first['emailOrNumber']; // Accessing the 'email' column
+    } else {
+      throw Exception('User not found');
+    }
   }
 
   /// Clears the entire database.

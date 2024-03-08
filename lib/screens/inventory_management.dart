@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:android_mims_development/model/item_model.dart';
 
 class InventoryPage extends StatefulWidget {
-  const InventoryPage({super.key});
+  final String email;
+  const InventoryPage({super.key, required this.email});
 
   @override
+  // ignore: library_private_types_in_public_api
   _InventoryPageState createState() => _InventoryPageState();
 }
 
@@ -39,9 +41,10 @@ class _InventoryPageState extends State<InventoryPage> {
                 suffixIcon: Icon(Icons.search),
               ),
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 20.0),
             Expanded(
               child: GridView.builder(
+                itemCount: 1,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount:
                       2, // Change this number to adjust the number of items in a row
@@ -69,6 +72,13 @@ class _InventoryPageState extends State<InventoryPage> {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add your onPressed code here!
+        }, // The "+" icon
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        child: const Icon(Icons.add),
       ),
     );
   }

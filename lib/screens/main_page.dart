@@ -8,9 +8,11 @@ import 'login_screen.dart';
 import 'package:android_mims_development/screens/profile.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  final String email;
+  const MainPage({super.key, required this.email});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MainPageState createState() => _MainPageState();
 }
 
@@ -21,7 +23,7 @@ class _MainPageState extends State<MainPage> {
   static const Color dominantColor =
       Color.fromARGB(255, 177, 172, 166); // Dominant color (60%)
   // static const Color secondaryColor =
-      // Color.fromARGB(255, 63, 61, 60); // Secondary color (30%)
+  // Color.fromARGB(255, 63, 61, 60); // Secondary color (30%)
 
   void _onItemTapped(int index) {
     setState(() {
@@ -42,7 +44,7 @@ class _MainPageState extends State<MainPage> {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: const Color.fromARGB(100 , 234, 221, 255),
+        backgroundColor: const Color.fromARGB(100, 234, 221, 255),
         centerTitle: true, // Aligns title to center
       ),
       drawer: Drawer(
@@ -51,22 +53,21 @@ class _MainPageState extends State<MainPage> {
           children: <Widget>[
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Color.fromARGB(100 , 234, 221, 255),
+                color: Color.fromARGB(100, 234, 221, 255),
               ),
               child: Text(
                 'Menu',
                 style: TextStyle(
-                  color: Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold
-                ),
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             ListTile(
               leading: const Icon(Icons.account_circle),
               title: const Text('Profile'),
               onTap: () {
-                                Navigator.push(
+                Navigator.push(
                   context,
                   PageRouteBuilder(
                     transitionDuration: const Duration(
@@ -80,7 +81,8 @@ class _MainPageState extends State<MainPage> {
                         child: child,
                       );
                     },
-                  ),);
+                  ),
+                );
               },
             ),
             ListTile(
@@ -127,7 +129,8 @@ class _MainPageState extends State<MainPage> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const LoginPage()),
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginPage()),
                             );
                           },
                         ),
@@ -170,13 +173,16 @@ class _MainPageState extends State<MainPage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Color.fromARGB(255, 0, 0, 0), // Accent color (highlight color)
+        selectedItemColor: const Color.fromARGB(
+            255, 0, 0, 0), // Accent color (highlight color)
         selectedFontSize: double.parse('15.0'),
         selectedIconTheme: const IconThemeData(size: 30.0),
         selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-        unselectedItemColor: Color.fromARGB(255, 0, 0, 0), // Secondary color
+        unselectedItemColor:
+            const Color.fromARGB(255, 0, 0, 0), // Secondary color
         onTap: _onItemTapped,
-        backgroundColor: const Color.fromARGB(100 , 234, 221, 255), // Dominant color
+        backgroundColor:
+            const Color.fromARGB(100, 234, 221, 255), // Dominant color
         type: BottomNavigationBarType.fixed, // Ensures all labels are visible
       ),
     );
@@ -185,9 +191,9 @@ class _MainPageState extends State<MainPage> {
   Widget _getPage(int index) {
     switch (index) {
       case 0:
-        return const DashboardPage();
+        return DashboardPage(email: widget.email);
       case 1:
-        return const InventoryPage();
+        return InventoryPage(email: widget.email);
       case 2:
         return SalesRecordPage();
       case 3:
