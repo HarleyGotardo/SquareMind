@@ -1,5 +1,6 @@
+import 'package:android_mims_development/screens/add_item.dart';
+import 'package:android_mims_development/services/item_database_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:android_mims_development/model/item_model.dart';
 
 class InventoryPage extends StatefulWidget {
   final String email;
@@ -11,7 +12,15 @@ class InventoryPage extends StatefulWidget {
 }
 
 class _InventoryPageState extends State<InventoryPage> {
+  late ItemDatabaseHelper db;
+  late Future<List<Map<String, dynamic>>> items;
   @override
+  void initState() {
+    super.initState();
+    db = ItemDatabaseHelper(userEmailOrNumber: widget.email);
+    items = db.getItems();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
@@ -43,30 +52,41 @@ class _InventoryPageState extends State<InventoryPage> {
             ),
             const SizedBox(height: 20.0),
             Expanded(
-              child: GridView.builder(
-                itemCount: 1,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount:
-                      2, // Change this number to adjust the number of items in a row
-                  childAspectRatio: 1.0,
-                ),
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      //function implemenetation here
-                    },
-                    child: Card(
-                      color: const Color.fromARGB(
-                          255, 63, 61, 60), // Change the color of the square
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                            15.0), // Add a border radius to the square
+              child: FutureBuilder<List<Map<String, dynamic>>>(
+                future: items,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Center(child: Text('Error: ${snapshot.error}'));
+                  } else {
+                    return GridView.builder(
+                      itemCount: snapshot.data!.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 1.0,
                       ),
-                      child: const Center(
-                          // Add the item name to the square
+                      itemBuilder: (context, index) {
+                        var item = snapshot.data![index];
+                        return GestureDetector(
+                          onTap: () {
+                            //function implementation here
+                          },
+                          child: Card(
+                            color: const Color.fromARGB(255, 63, 61, 60),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            child: Center(
+                              child: Text(
+                                  item['itemName']), // Display the item name
+                            ),
                           ),
-                    ),
-                  );
+                        );
+                      },
+                    );
+                  }
                 },
               ),
             ),
@@ -75,7 +95,11 @@ class _InventoryPageState extends State<InventoryPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Add your onPressed code here!
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => AddItemPage(email: widget.email)),
+          );
         }, // The "+" icon
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         child: const Icon(Icons.add),

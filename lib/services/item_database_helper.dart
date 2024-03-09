@@ -29,5 +29,15 @@ class ItemDatabaseHelper {
     ''');
   }
 
+  Future<void> addItem(Map<String, dynamic> item) async {
+    final db = await database;
+    await db.insert('Item', item);
+  }
+
+  Future<List<Map<String, dynamic>>> getItems() async {
+    final db = await database;
+    return await db.query('Item');
+  }
+
   // Rest of your database methods...
 }
