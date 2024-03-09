@@ -49,6 +49,33 @@ class _InventoryPageState extends State<InventoryPage> {
     );
   }
 
+  void showItemInfo(BuildContext context, Map<String, dynamic> item) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Item Information'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Name: ${item['itemName']}'),
+            Text('Quantity: ${item['quantity']}'),
+            Text('Price: ${item['price']}'),
+            Text('Expiry Date: ${item['expiryDate']}'),
+            Text('Category: ${item['category']}'),
+            // Add more Text widgets here for other item properties
+          ],
+        ),
+        actions: [
+          TextButton(
+            child: const Text('OK'),
+            onPressed: () => Navigator.pop(context),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,9 +126,7 @@ class _InventoryPageState extends State<InventoryPage> {
                       itemBuilder: (context, index) {
                         var item = snapshot.data![index];
                         return GestureDetector(
-                          onTap: () {
-                            //function implementation here
-                          },
+                          onTap: () => showItemInfo(context, item),
                           onLongPress: () => deleteItem(context, item),
                           child: Card(
                             color: const Color.fromARGB(255, 63, 61, 60),
