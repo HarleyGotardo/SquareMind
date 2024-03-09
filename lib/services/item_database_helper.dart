@@ -39,5 +39,10 @@ class ItemDatabaseHelper {
     return await db.query('Item');
   }
 
+  Future<void> deleteItem(int id) async {
+    final db = await database;
+    await db.delete('Item', where: 'id = ?', whereArgs: [id]);
+  }
+
   // Rest of your database methods...
 }

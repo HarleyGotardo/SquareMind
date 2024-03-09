@@ -14,6 +14,7 @@ class InventoryPage extends StatefulWidget {
 class _InventoryPageState extends State<InventoryPage> {
   late ItemDatabaseHelper db;
   late Future<List<Map<String, dynamic>>> items;
+
   @override
   void initState() {
     super.initState();
@@ -21,6 +22,34 @@ class _InventoryPageState extends State<InventoryPage> {
     items = db.getItems();
   }
 
+  //method to delete item
+  void deleteItem(BuildContext context, Map<String, dynamic> item) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Delete Item'),
+        content: const Text('Are you sure you want to delete this item?'),
+        actions: [
+          TextButton(
+            child: const Text('Cancel'),
+            onPressed: () => Navigator.pop(context),
+          ),
+          TextButton(
+            child: const Text('Delete'),
+            onPressed: () {
+              db.deleteItem(item['id']);
+              setState(() {
+                items = db.getItems();
+              });
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
@@ -73,6 +102,7 @@ class _InventoryPageState extends State<InventoryPage> {
                           onTap: () {
                             //function implementation here
                           },
+                          onLongPress: () => deleteItem(context, item),
                           child: Card(
                             color: const Color.fromARGB(255, 63, 61, 60),
                             shape: RoundedRectangleBorder(
