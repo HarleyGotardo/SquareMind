@@ -4,23 +4,25 @@ class RecordSale extends StatelessWidget {
   final TextEditingController itemController = TextEditingController();
   final TextEditingController quantityController = TextEditingController();
 
+  RecordSale({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Record Sold Item'),
+        title: const Text('Record Sold Item'),
       ),
       body: Column(
         children: [
           TextField(
             controller: itemController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Item',
             ),
           ),
           TextField(
             controller: quantityController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Quantity',
             ),
           ),

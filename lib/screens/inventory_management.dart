@@ -14,6 +14,7 @@ class InventoryPage extends StatefulWidget {
 class _InventoryPageState extends State<InventoryPage> {
   late ItemDatabaseHelper db;
   late Future<List<Map<String, dynamic>>> items;
+  List<Map<String, dynamic>> filteredItems = [];
 
   @override
   void initState() {
@@ -48,6 +49,25 @@ class _InventoryPageState extends State<InventoryPage> {
       ),
     );
   }
+
+  // // method to edit item
+  // void editItem(BuildContext context, Map<String, dynamic> item) {
+  //   Navigator.push(
+  //     context,
+  //     MaterialPageRoute(
+  //       builder: (context) => AddItemPage(
+  //         email: widget.email,
+  //         item: item,
+  //       ),
+  //     ),
+  //   ).then((value) {
+  //     if (value != null && value) {
+  //       setState(() {
+  //         items = db.getItems();
+  //       });
+  //     }
+  //   });
+  // }
 
   void showItemInfo(BuildContext context, Map<String, dynamic> item) {
     showDialog(
@@ -86,7 +106,7 @@ class _InventoryPageState extends State<InventoryPage> {
           children: [
             const Row(
               children: [
-                Icon(Icons.inventory, size: 32.0),
+                Icon(Icons.storefront, size: 32.0),
                 SizedBox(width: 8.0),
                 Text(
                   'Inventory Management',
@@ -96,9 +116,14 @@ class _InventoryPageState extends State<InventoryPage> {
             ),
             const SizedBox(height: 16.0),
             TextField(
-              onChanged: (value) {
+              onChanged: (value) async {
+                final itemList = await items;
                 setState(() {
-                  //function implementation here
+                  filteredItems = itemList.where((item) {
+                    final itemName = item['itemName'].toString().toLowerCase();
+                    final searchQuery = value.toLowerCase();
+                    return itemName.contains(searchQuery);
+                  }).toList();
                 });
               },
               decoration: const InputDecoration(
@@ -116,35 +141,64 @@ class _InventoryPageState extends State<InventoryPage> {
                   } else if (snapshot.hasError) {
                     return Center(child: Text('Error: ${snapshot.error}'));
                   } else {
+                    final itemList = filteredItems.isNotEmpty ? filteredItems : snapshot.data!;
                     return GridView.builder(
-                      itemCount: snapshot.data!.length,
+                      itemCount: itemList.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         childAspectRatio: 1.0,
                       ),
                       itemBuilder: (context, index) {
-                        var item = snapshot.data![index];
+                        var item = itemList[index];
                         return GestureDetector(
                           onTap: () => showItemInfo(context, item),
-                          onLongPress: () => deleteItem(context, item),
+                          onLongPress: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: const Text('Options'),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    ListTile(
+                                      leading: const Icon(Icons.edit),
+                                      title: const Text('Edit'),
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                        // editItem(context, item);
+                                      },
+                                    ),
+                                    ListTile(
+                                      leading: const Icon(Icons.delete),
+                                      title: const Text('Delete'),
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                        deleteItem(context, item);
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
                           child: Card(
-                            color: Color.fromARGB(140, 63, 61, 60),
+                            color: const Color.fromARGB(140, 63, 61, 60),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15.0),
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.inventory,
                                   size: 48.0, // Increase the size to 48.0
                                   color: Colors.white,
                                 ),
-                                SizedBox(height: 8.0),
+                                const SizedBox(height: 8.0),
                                 Text(
                                   item['itemName'], // Display the item name
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16.0,
                                   ),
@@ -167,8 +221,14 @@ class _InventoryPageState extends State<InventoryPage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => AddItemPage(email: widget.email)),
-          );
+                builder: (context) => AddItemPage(email: widget.email, item: const {},)),
+          ).then((value) {
+            if (value != null && value) {
+              setState(() {
+                items = db.getItems();
+              });
+            }
+          });
         }, // The "+" icon
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         child: const Icon(Icons.add),
