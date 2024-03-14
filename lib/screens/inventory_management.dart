@@ -129,13 +129,27 @@ class _InventoryPageState extends State<InventoryPage> {
                           onTap: () => showItemInfo(context, item),
                           onLongPress: () => deleteItem(context, item),
                           child: Card(
-                            color: const Color.fromARGB(255, 63, 61, 60),
+                            color: Color.fromARGB(140, 63, 61, 60),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15.0),
                             ),
-                            child: Center(
-                              child: Text(
-                                  item['itemName']), // Display the item name
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.inventory,
+                                  size: 48.0, // Increase the size to 48.0
+                                  color: Colors.white,
+                                ),
+                                SizedBox(height: 8.0),
+                                Text(
+                                  item['itemName'], // Display the item name
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         );
