@@ -1,5 +1,7 @@
 import 'package:android_mims_development/services/item_database_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 class EditItemPage extends StatefulWidget {
   final Map<String, dynamic> item;
@@ -47,29 +49,127 @@ class _EditItemPageState extends State<EditItemPage> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
-            TextField(
+            TextFormField(
               controller: nameController,
-              decoration: const InputDecoration(labelText: 'Name'),
+              decoration: const InputDecoration(
+                labelText: 'Name',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.text_fields),
+              ),
             ),
-            TextField(
+            const SizedBox(height: 10),
+            TextFormField(
               controller: quantityController,
-              decoration: const InputDecoration(labelText: 'Quantity'),
+              decoration: const InputDecoration(
+                labelText: 'Quantity',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.format_list_numbered),
+              ),
+              keyboardType: TextInputType.number,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+              ],
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter a quantity';
+                }
+                final quantity = int.tryParse(value);
+                if (quantity == null || quantity <= 0) {
+                  return 'Please enter a positive integer';
+                }
+                return null;
+              },
             ),
-            TextField(
+            const SizedBox(height: 10),
+            TextFormField(
               controller: priceController,
-              decoration: const InputDecoration(labelText: 'Price'),
+              decoration: const InputDecoration(
+                labelText: 'Price',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.attach_money),
+              ),
+              keyboardType: TextInputType.number,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+              ],
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter a price';
+                }
+                final price = double.tryParse(value);
+                if (price == null || price <= 0) {
+                  return 'Please enter a positive number';
+                }
+                return null;
+              },
             ),
-            TextField(
-              controller: expiryDateController,
-              decoration: const InputDecoration(labelText: 'Expiry Date'),
+            const SizedBox(height: 10),
+              TextFormField(
+                controller: expiryDateController,
+                decoration: const InputDecoration(
+                  labelText: 'Expiry Date',
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.calendar_month),
+                ),
+                onTap: () async {
+                  DateTime? pickedDate = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2000),
+                    lastDate: DateTime(2101),
+                  );
+                  if (pickedDate != null) {
+                    setState(() {
+                      expiryDateController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
+                    });
+                  }
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter the expiry date';
+                  }
+                  return null;
+                },
             ),
-            TextField(
+            const SizedBox(height: 10),
+            TextFormField(
               controller: categoryController,
-              decoration: const InputDecoration(labelText: 'Category'),
+              decoration: const InputDecoration(
+                labelText: 'Category',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.category),
+              ),
             ),
+            const SizedBox(height: 10),
             ElevatedButton(
               child: const Text('Save'),
               onPressed: () async {
+                // Check if any input field is empty
+                if (nameController.text.isEmpty ||
+                    quantityController.text.isEmpty ||
+                    priceController.text.isEmpty ||
+                    expiryDateController.text.isEmpty ||
+                    categoryController.text.isEmpty) {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Error'),
+                        content: const Text('Please fill in the information of the item'),
+                        actions: <Widget>[
+                          TextButton(
+                            child: const Text('OK'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                  return; // Do not save if any field is empty
+                }
+
                 // Create a new map with the updated values
                 Map<String, dynamic> updatedItem = {
                   'id': widget.item['id'],
