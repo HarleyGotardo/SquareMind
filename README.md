@@ -4,7 +4,8 @@
 | Internal Release Code    | Version | Date Released |
 |----------|------------|-------------------|
 | SM.010.000 | v1.0.0   | 2024-02-06 22:37:03 | 
-| SM.020.004 | v2.0.0   | 2024-02-11 22:31:40| 
+| SM.020.004 | v2.0.0   | 2024-02-11 22:31:40|
+| SM.020.008 | v2.0.0   | 2024-03-15 22:31:40| 
 
 ## Releases
 ### SM.010.000
@@ -30,6 +31,15 @@
 - Further enhanced the login and registration page UI.
 - Separates the different screen files for the main page.
 - Added more widgets in Inventory Management and Cloud Integration Page.
+
+### SM.020.008
+- Added the add item feature.
+- Added the delete feature using long press.
+- Improved the UI elements in inventory management section.
+- Added additional constraints and modified user experience.
+- Added a date picker in date input field.
+- Added the update item functionality.
+- Improved text field ui in edit item feature, and added constraints.
 
 ## Important Links
 - Design Specs: [Design Specifications](https://github.com/HarleyGotardo/square-mind/blob/main/README_FILES/MAIN_MD/DesignSpecificationDocument.md)
