@@ -44,5 +44,8 @@ class ItemDatabaseHelper {
     await db.delete('Item', where: 'id = ?', whereArgs: [id]);
   }
 
-  // Rest of your database methods...
+  Future<void> updateItem(int id, Map<String, dynamic> newItem) async {
+    final db = await database;
+    await db.update('Item', newItem, where: 'id = ?', whereArgs: [id]);
+  }
 }
