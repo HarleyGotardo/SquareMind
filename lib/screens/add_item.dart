@@ -1,5 +1,7 @@
 import 'package:android_mims_development/services/item_database_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 class AddItemPage extends StatefulWidget {
   final String email;
@@ -13,6 +15,7 @@ class _AddItemPageState extends State<AddItemPage> {
   late ItemDatabaseHelper db;
   final _formKey = GlobalKey<FormState>();
   final Map<String, dynamic> _item = {};
+  final TextEditingController _date = TextEditingController();
 
   @override
   void initState() {
@@ -58,10 +61,16 @@ class _AddItemPageState extends State<AddItemPage> {
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.format_list_numbered),
                 ),
-                onSaved: (value) => _item['quantity'] = value,
+                keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly
+                ],
+                onSaved: (value) => _item['quantity'] = int.parse(value!),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter the quantity';
+                  } else if (int.tryParse(value) == null || int.parse(value) <= 0) {
+                    return 'Please enter a positive integer';
                   }
                   return null;
                 },
@@ -73,30 +82,49 @@ class _AddItemPageState extends State<AddItemPage> {
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.attach_money),
                 ),
-                onSaved: (value) => _item['price'] = value,
+                keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
+                ],
+                onSaved: (value) => _item['price'] = double.parse(value!),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter the price';
+                  } else if (double.tryParse(value) == null || double.parse(value) <= 0) {
+                    return 'Please enter a positive number';
                   }
                   return null;
                 },
               ),
               const SizedBox(height: 16.0),
               TextFormField(
+                controller: _date,
                 decoration: const InputDecoration(
                   labelText: 'Expiry Date',
                   border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.calendar_today),
+                  prefixIcon: Icon(Icons.calendar_month),
                 ),
-                onSaved: (value) => _item['expiryDate'] = value,
+                onTap: () async {
+                  DateTime? pickedDate = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2000),
+                    lastDate: DateTime(2101),
+                  );
+                  if (pickedDate != null) {
+                    setState(() {
+                      _date.text = DateFormat('yyyy-MM-dd').format(pickedDate);
+                    });
+                  }
+                },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter the expiry date';
                   }
                   return null;
                 },
-              ),
-              const SizedBox(height: 16.0),
+              ),              
+                      const SizedBox(height: 16.0),
               TextFormField(
                 decoration: const InputDecoration(
                   labelText: 'Barcode',
@@ -136,6 +164,7 @@ class _AddItemPageState extends State<AddItemPage> {
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             _formKey.currentState!.save();
+            _item['expiryDate'] = _date.text;  // Save the expiry date
             db.addItem(_item);
             Navigator.pop(context);
           } else {
