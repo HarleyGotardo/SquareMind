@@ -1,4 +1,5 @@
 import 'package:android_mims_development/screens/add_item.dart';
+import 'package:android_mims_development/screens/edit_item.dart';
 import 'package:android_mims_development/services/item_database_helper.dart';
 import 'package:flutter/material.dart';
 
@@ -50,24 +51,24 @@ class _InventoryPageState extends State<InventoryPage> {
     );
   }
 
-  // // method to edit item
-  // void editItem(BuildContext context, Map<String, dynamic> item) {
-  //   Navigator.push(
-  //     context,
-  //     MaterialPageRoute(
-  //       builder: (context) => AddItemPage(
-  //         email: widget.email,
-  //         item: item,
-  //       ),
-  //     ),
-  //   ).then((value) {
-  //     if (value != null && value) {
-  //       setState(() {
-  //         items = db.getItems();
-  //       });
-  //     }
-  //   });
-  // }
+  // method to edit item
+  void editItem(BuildContext context, Map<String, dynamic> item) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EditItemPage(
+          email: widget.email,
+          item: item,
+        ),
+      ),
+    ).then((value) {
+      if (value != null && value) {
+        setState(() {
+          items = db.getItems();
+        });
+      }
+    });
+  }
 
   void showItemInfo(BuildContext context, Map<String, dynamic> item) {
     showDialog(
@@ -141,7 +142,9 @@ class _InventoryPageState extends State<InventoryPage> {
                   } else if (snapshot.hasError) {
                     return Center(child: Text('Error: ${snapshot.error}'));
                   } else {
-                    final itemList = filteredItems.isNotEmpty ? filteredItems : snapshot.data!;
+                    final itemList = filteredItems.isNotEmpty
+                        ? filteredItems
+                        : snapshot.data!;
                     return GridView.builder(
                       itemCount: itemList.length,
                       gridDelegate:
@@ -166,7 +169,7 @@ class _InventoryPageState extends State<InventoryPage> {
                                       title: const Text('Edit'),
                                       onTap: () {
                                         Navigator.pop(context);
-                                        // editItem(context, item);
+                                        editItem(context, item);
                                       },
                                     ),
                                     ListTile(
@@ -221,7 +224,10 @@ class _InventoryPageState extends State<InventoryPage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => AddItemPage(email: widget.email, item: const {},)),
+                builder: (context) => AddItemPage(
+                      email: widget.email,
+                      item: const {},
+                    )),
           ).then((value) {
             if (value != null && value) {
               setState(() {
