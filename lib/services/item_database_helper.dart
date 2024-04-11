@@ -48,4 +48,13 @@ class ItemDatabaseHelper {
     final db = await database;
     await db.update('Item', newItem, where: 'id = ?', whereArgs: [id]);
   }
+
+  // E delete lang ni bai if di needed, try2 ra ni naku hahaha
+  Future<void> listItemForSale(int id, int quantity) async {
+    final db = await database;
+    final item = await db.query('Item', where: 'id = ?', whereArgs: [id]);
+    final int currentQuantity = int.parse(item[0]['quantity'] as String);
+    final int newQuantity = currentQuantity - quantity;
+    await db.update('Item', {'quantity': newQuantity.toString()}, where: 'id = ?', whereArgs: [id]);
+  }
 }
