@@ -45,7 +45,7 @@ class _RecordSaleState extends State<RecordSale> {
             TextFormField(
               controller: _date,
               decoration: const InputDecoration(
-                labelText: 'Expiry Date',
+                labelText: 'Date',
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.calendar_month),
               ),
@@ -64,7 +64,7 @@ class _RecordSaleState extends State<RecordSale> {
               },
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Please enter the expiry date';
+                  return 'Please enter the date';
                 }
                 return null;
               },
