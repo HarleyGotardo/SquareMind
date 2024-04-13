@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "212078945268",
-    "project_id": "quick-stock-6494a",
-    "storage_bucket": "quick-stock-6494a.appspot.com"
+    "project_number": "787842851588",
+    "project_id": "quick-stock-4100c",
+    "storage_bucket": "quick-stock-4100c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:212078945268:android:0a830bd0c4aca12f908fa1",
+        "mobilesdk_app_id": "1:787842851588:android:b9ff0be978ae4a65afe651",
         "android_client_info": {
           "package_name": "com.example.android_mims_development"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBf7QCTaLyu7UrDX12yh86tUn5CyTXVrFw"
+          "current_key": "AIzaSyAsU4oyoQUJvoklCH6EVPx0c5llcYSps0w"
         }
       ],
       "services": {
