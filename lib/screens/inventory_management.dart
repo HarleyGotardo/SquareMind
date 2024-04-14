@@ -103,40 +103,39 @@ class _InventoryPageState extends State<InventoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          appBar: AppBar(
-      // title: Text('Refresh'),
-              automaticallyImplyLeading: false,
-      actions: [
-        IconButton(
-          icon: Icon(Icons.refresh),
-          onPressed: () async {
-            final itemList = await db.getItems();
-            for (var item in itemList) {
-              await db.checkAndDeleteIfZeroQuantity(item['itemName']);
-            }
-            setState(() {
-              items = db.getItems();
-            });
-          },
+      appBar: AppBar(
+        title: Row(
+          children: [
+            Icon(Icons.store),
+            SizedBox(width: 8.0),
+            Text(
+              'Inventory Management',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
-      ],
-    ),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.refresh),
+            onPressed: () async {
+              final itemList = await db.getItems();
+              for (var item in itemList) {
+                await db.checkAndDeleteIfZeroQuantity(item['itemName']);
+              }
+              setState(() {
+                items = db.getItems();
+              });
+            },
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Row(
-              children: [
-                Icon(Icons.storefront, size: 32.0),
-                SizedBox(width: 8.0),
-                Text(
-                  'Inventory Management',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 1.0),
             TextField(
               onChanged: (value) async {
                 final itemList = await items;
