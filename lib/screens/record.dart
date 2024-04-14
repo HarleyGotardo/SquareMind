@@ -23,7 +23,18 @@ class _RecordSaleState extends State<RecordSale> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Record Sold Item'),
+        title: Row(
+          children: [
+            Icon(Icons.list), // This is the record icon
+            SizedBox(width: 8), // This adds some spacing between the icon and the text
+            Text(
+              'Sales Record',
+              style: TextStyle(
+              fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
         automaticallyImplyLeading: false,
       ),
       body: Padding(
