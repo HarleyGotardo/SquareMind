@@ -6,6 +6,7 @@
 | SM.010.000 | v1.0.0   | 2024-02-06 22:37:03 | 
 | SM.020.004 | v2.0.0   | 2024-02-11 22:31:40|
 | SM.020.008 | v2.0.0   | 2024-03-15 22:31:40| 
+| SM.020.011 | v2.1.0   | 2024-04-14 19:30:31| 
 
 ## Releases
 ### SM.010.000
@@ -41,8 +42,16 @@
 - Added the update item functionality.
 - Improved text field ui in edit item feature, and added constraints.
 
+### SM.020.008
+- Add a new date input field in record.dart.
+- Added a link for the apk releases.
+- Built an apk for the system and added firebase.
+- Recording of sold items is now implemented.
+- Added a totalPrice in recording of sold items.
+- Added style of app bar in record.dart.
+
 ## Important Links
 - Design Specs: [Design Specifications](https://github.com/HarleyGotardo/square-mind/blob/main/README_FILES/MAIN_MD/DesignSpecificationDocument.md)
 - Apk Releases: [Apks](https://github.com/HarleyGotardo/squaremind-apk-releases)
 
-# test
+# Test
