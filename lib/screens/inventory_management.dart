@@ -8,7 +8,6 @@ class InventoryPage extends StatefulWidget {
   const InventoryPage({super.key, required this.email});
 
   @override
-  // ignore: library_private_types_in_public_api
   _InventoryPageState createState() => _InventoryPageState();
 }
 
@@ -22,9 +21,13 @@ class _InventoryPageState extends State<InventoryPage> {
     super.initState();
     db = ItemDatabaseHelper(userEmailOrNumber: widget.email);
     items = db.getItems();
+    items.then((itemList) async {
+      for (var item in itemList) {
+        await db.checkAndDeleteIfZeroQuantity(item['itemName']);
+      }
+    });
   }
 
-  //method to delete item
   void deleteItem(BuildContext context, Map<String, dynamic> item) {
     showDialog(
       context: context,
@@ -38,8 +41,9 @@ class _InventoryPageState extends State<InventoryPage> {
           ),
           TextButton(
             child: const Text('Delete'),
-            onPressed: () {
-              db.deleteItem(item['id']);
+            onPressed: () async {
+              await db.deleteItem(item['id']);
+              await db.checkAndDeleteIfZeroQuantity(item['itemName']);
               setState(() {
                 items = db.getItems();
               });
@@ -51,7 +55,6 @@ class _InventoryPageState extends State<InventoryPage> {
     );
   }
 
-  // method to edit item
   void editItem(BuildContext context, Map<String, dynamic> item) {
     Navigator.push(
       context,
@@ -61,8 +64,9 @@ class _InventoryPageState extends State<InventoryPage> {
           item: item,
         ),
       ),
-    ).then((value) {
+    ).then((value) async {
       if (value != null && value) {
+        await db.checkAndDeleteIfZeroQuantity(item['itemName']);
         setState(() {
           items = db.getItems();
         });
@@ -84,7 +88,6 @@ class _InventoryPageState extends State<InventoryPage> {
             Text('Price: ${item['price']}'),
             Text('Expiry Date: ${item['expiryDate']}'),
             Text('Category: ${item['category']}'),
-            // Add more Text widgets here for other item properties
           ],
         ),
         actions: [
@@ -100,6 +103,24 @@ class _InventoryPageState extends State<InventoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+          appBar: AppBar(
+      // title: Text('Refresh'),
+              automaticallyImplyLeading: false,
+      actions: [
+        IconButton(
+          icon: Icon(Icons.refresh),
+          onPressed: () async {
+            final itemList = await db.getItems();
+            for (var item in itemList) {
+              await db.checkAndDeleteIfZeroQuantity(item['itemName']);
+            }
+            setState(() {
+              items = db.getItems();
+            });
+          },
+        ),
+      ],
+    ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -195,12 +216,12 @@ class _InventoryPageState extends State<InventoryPage> {
                               children: [
                                 const Icon(
                                   Icons.inventory,
-                                  size: 48.0, // Increase the size to 48.0
+                                  size: 48.0,
                                   color: Colors.white,
                                 ),
                                 const SizedBox(height: 8.0),
                                 Text(
-                                  item['itemName'], // Display the item name
+                                  item['itemName'],
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16.0,
@@ -228,14 +249,18 @@ class _InventoryPageState extends State<InventoryPage> {
                       email: widget.email,
                       item: const {},
                     )),
-          ).then((value) {
+          ).then((value) async {
             if (value != null && value) {
+              final itemList = await db.getItems();
+              for (var item in itemList) {
+                await db.checkAndDeleteIfZeroQuantity(item['itemName']);
+              }
               setState(() {
                 items = db.getItems();
               });
             }
           });
-        }, // The "+" icon
+        },
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         child: const Icon(Icons.add),
       ),

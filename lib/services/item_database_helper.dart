@@ -49,12 +49,37 @@ class ItemDatabaseHelper {
     await db.update('Item', newItem, where: 'id = ?', whereArgs: [id]);
   }
 
-  // E delete lang ni bai if di needed, try2 ra ni naku hahaha
-  Future<void> listItemForSale(int id, int quantity) async {
+  Future<bool> itemExists(String itemName) async {
     final db = await database;
-    final item = await db.query('Item', where: 'id = ?', whereArgs: [id]);
-    final int currentQuantity = int.parse(item[0]['quantity'] as String);
-    final int newQuantity = currentQuantity - quantity;
-    await db.update('Item', {'quantity': newQuantity.toString()}, where: 'id = ?', whereArgs: [id]);
+    final result = await db.query('Item', where: 'itemName = ?', whereArgs: [itemName]);
+    return result.isNotEmpty;
+  }
+
+  Future<void> checkAndDeleteIfZeroQuantity(String itemName) async {
+    final db = await database;
+    final result = await db.query('Item', where: 'itemName = ?', whereArgs: [itemName]);
+    if (result.isNotEmpty) {
+      int quantity = int.tryParse(result.first['quantity'] as String) ?? 0;
+      if (quantity <= 0) {
+        await db.delete('Item', where: 'itemName = ?', whereArgs: [itemName]);
+      }
+    }
+  }
+
+  Future<int> getItemQuantity(String itemName) async {
+  final db = await database;
+  final result = await db.query('Item', where: 'itemName = ?', whereArgs: [itemName]);
+  if (result.isNotEmpty) {
+    return int.tryParse(result.first['quantity'] as String) ?? 0;
+  }
+  return 0;
+}
+  Future<double> getItemPrice(String itemName) async {
+    final db = await database;
+    final result = await db.query('Item', where: 'itemName = ?', whereArgs: [itemName]);
+    if (result.isNotEmpty) {
+      return (result.first['price'] as int).toDouble();
+    }
+    return 0.0;
   }
 }

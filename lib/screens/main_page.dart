@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:android_mims_development/screens/dashboard.dart';
 import 'package:android_mims_development/screens/inventory_management.dart';
-import 'package:android_mims_development/screens/sales_record.dart';
+import 'package:android_mims_development/screens/record.dart';
 import 'package:android_mims_development/screens/cloud_integration.dart';
 import 'package:android_mims_development/screens/settings.dart';
 import 'login_screen.dart';
@@ -195,7 +195,7 @@ class _MainPageState extends State<MainPage> {
       case 1:
         return InventoryPage(email: widget.email);
       case 2:
-        return SalesRecordPage();
+        return RecordSale(email: widget.email);
       case 3:
         return const CloudPage();
       default:
