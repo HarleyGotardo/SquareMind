@@ -42,7 +42,7 @@
 - Added the update item functionality.
 - Improved text field ui in edit item feature, and added constraints.
 
-### SM.020.008
+### SM.020.011
 - Add a new date input field in record.dart.
 - Added a link for the apk releases.
 - Built an apk for the system and added firebase.
