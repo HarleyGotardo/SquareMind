@@ -20,7 +20,6 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   void initState() {
     super.initState();
-    // String formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
     totalSalesFuture = saleDb.calculateTotalSales();
     itemNamesFuture = itemDb.getAllItemNames();
   }
@@ -46,8 +45,8 @@ class _DashboardPageState extends State<DashboardPage> {
             const SizedBox(height: 16.0),
             Expanded(
               child: GridView.count(
-                crossAxisCount: 2,  // Increase the number of items in a row
-                childAspectRatio: 2 / 3,  // Change the aspect ratio of the items
+                crossAxisCount: 2,
+                childAspectRatio: 2 / 3,
                 crossAxisSpacing: 8,
                 mainAxisSpacing: 8,
                 children: [
@@ -60,23 +59,23 @@ class _DashboardPageState extends State<DashboardPage> {
                         print(snapshot.error);
                         return const Center(child: Text('Error'));
                       } else {
-return Card(
-  child: Center(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text('Total Sales', textAlign: TextAlign.center,style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-        Text(DateFormat('yyyy-MM-dd').format(DateTime.now()), style: TextStyle(fontSize: 16)),
-        Text('P ${snapshot.data}', style: TextStyle(fontSize: 30)),
-      ],
-    ),
-  ),
-);
+                        return Card(
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('Total Sales', textAlign: TextAlign.center,style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                                Text(DateFormat('yyyy-MM-dd').format(DateTime.now()), style: TextStyle(fontSize: 16)),
+                                Text('P ${snapshot.data}', style: TextStyle(fontSize: 30)),
+                              ],
+                            ),
+                          ),
+                        );
                       }
                     },
                   ),
-                  Expanded(
-                    flex: 2,
+                  Container(
+                    height: 200,
                     child: FutureBuilder<List<Map<String, dynamic>>>(
                       future: saleDb.getTotalSoldItems(),
                       builder: (context, snapshot) {
@@ -116,8 +115,8 @@ return Card(
                       },
                     ),
                   ),
-                  Expanded(
-                    flex: 2,  // Make this card take up twice as much space as the other cards
+                  Container(
+                    height: 200,
                     child: FutureBuilder<Map<String, double>>(
                       future: saleDb.getTotalSalesByMonth(),
                       builder: (context, snapshot) {
@@ -144,7 +143,7 @@ return Card(
                                   MapEntry<String, double> entry = snapshot.data!.entries.elementAt(index);
                                   return Card(
                                     child: ListTile(
-                                      title: Text('Month: ${entry.key} - Total: P ${entry.value}'),
+                                      title: Text('Month: ${entry.key} ~ Total: P ${entry.value}'),
                                     ),
                                   );
                                 },
@@ -157,8 +156,8 @@ return Card(
                       },
                     ),
                   ),
-                  Expanded(
-                    flex: 2,  // Make this card take up twice as much space as the other cards
+                  Container(
+                    height: 200,
                     child: FutureBuilder<List<String>>(
                       future: itemNamesFuture,
                       builder: (context, snapshot) {
@@ -182,7 +181,7 @@ return Card(
                                 physics: NeverScrollableScrollPhysics(),
                                 itemCount: snapshot.data!.length,
                                 itemBuilder: (context, index) {
-                                  String itemName = snapshot.data![index];  // Store the item name in a variable
+                                  String itemName = snapshot.data![index];
                                   return FutureBuilder<int>(
                                     future: itemDb.getTotalItemQuantity(itemName),
                                     builder: (context, snapshot) {
@@ -194,7 +193,7 @@ return Card(
                                       } else if (snapshot.hasData) {
                                         return Card(
                                           child: ListTile(
-                                            title: Text('Item: $itemName - Quantity: ${snapshot.data}'),  // Use the item name variable here
+                                            title: Text('Item: $itemName - Quantity: ${snapshot.data}'),
                                           ),
                                         );
                                       } else {
@@ -211,11 +210,9 @@ return Card(
                         }
                       },
                     ),
-                    
                   ),
                 ],
               ),
-              
             ),
           ],
         ),
