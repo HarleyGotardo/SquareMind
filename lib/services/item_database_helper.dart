@@ -82,4 +82,41 @@ class ItemDatabaseHelper {
     }
     return 0.0;
   }
+
+  // Future<int> getTotalItemQuantity(String itemName) async {
+  //   final db = await database;
+  //   final result = await db.query('Item', where: 'itemName = ?', whereArgs: [itemName]);
+  
+  //   int totalQuantity = 0;
+  //   for (var item in result) {
+  //     int quantity = int.tryParse(item['quantity'] as String) ?? 0;
+  //     totalQuantity += quantity;
+  //   }
+  
+  //   return totalQuantity;
+  // }
+  Future<int> getTotalItemQuantity(String itemName) async {
+    final db = await database;
+    final result = await db.query('Item', where: 'itemName = ?', whereArgs: [itemName]);
+
+    int totalQuantity = 0;
+    for (var item in result) {
+      int quantity = int.tryParse(item['quantity'] as String) ?? 0;
+      totalQuantity += quantity;
+    }
+
+    return totalQuantity;
+  }
+
+  Future<List<String>> getAllItemNames() async {
+    final db = await database;
+    final result = await db.query('Item');
+  
+    List<String> itemNames = [];
+    for (var item in result) {
+      itemNames.add(item['itemName'].toString());
+    }
+  
+    return itemNames;
+  }
 }
