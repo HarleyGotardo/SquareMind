@@ -7,6 +7,7 @@
 | SM.020.004 | v2.0.0   | 2024-02-11 22:31:40|
 | SM.020.008 | v2.0.0   | 2024-03-15 22:31:40| 
 | SM.020.011 | v2.1.0   | 2024-04-14 19:30:31| 
+| SM.020.012 | v2.1.0   | 2024-05-03 16:00:00| 
 
 ## Releases
 ### SM.010.000
@@ -49,6 +50,9 @@
 - Recording of sold items is now implemented.
 - Added a totalPrice in recording of sold items.
 - Added style of app bar in record.dart.
+
+### SM.020.012
+- Completed Dashboard Functionality.
 
 ## Important Links
 - Design Specs: [Design Specifications](https://github.com/HarleyGotardo/square-mind/blob/main/README_FILES/MAIN_MD/DesignSpecificationDocument.md)
