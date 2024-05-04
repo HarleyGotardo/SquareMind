@@ -58,4 +58,6 @@
 - Design Specs: [Design Specifications](https://github.com/HarleyGotardo/square-mind/blob/main/README_FILES/MAIN_MD/DesignSpecificationDocument.md)
 - Apk Releases: [Apks](https://github.com/HarleyGotardo/squaremind-apk-releases)
 
+
 # Test
+- Test Case Management: [SquareMindTCM] (https://github.com/HarleyGotardo/SquareMindTCM)
