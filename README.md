@@ -60,4 +60,4 @@
 
 
 # Test
-- Test Case Management: [SquareMindTCM] (https://github.com/HarleyGotardo/SquareMindTCM)
+- Test Case Management: [SquareMindTCM](https://github.com/HarleyGotardo/SquareMindTCM)
