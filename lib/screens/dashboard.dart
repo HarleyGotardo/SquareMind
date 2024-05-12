@@ -64,7 +64,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('Total Sales', textAlign: TextAlign.center,style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                                Text('Total Sales Today', textAlign: TextAlign.center,style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                                 Text(DateFormat('yyyy-MM-dd').format(DateTime.now()), style: TextStyle(fontSize: 16)),
                                 Text('P ${snapshot.data}', style: TextStyle(fontSize: 30)),
                               ],

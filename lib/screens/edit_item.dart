@@ -21,8 +21,6 @@ class _EditItemPageState extends State<EditItemPage> {
   late TextEditingController nameController;
   late TextEditingController quantityController;
   late TextEditingController priceController;
-  late TextEditingController expiryDateController;
-  late TextEditingController categoryController;
   ItemDatabaseHelper? db;
 
   @override
@@ -34,9 +32,6 @@ class _EditItemPageState extends State<EditItemPage> {
         TextEditingController(text: widget.item['quantity'].toString());
     priceController =
         TextEditingController(text: widget.item['price'].toString());
-    expiryDateController =
-        TextEditingController(text: widget.item['expiryDate']);
-    categoryController = TextEditingController(text: widget.item['category']);
   }
 
   @override
@@ -104,42 +99,7 @@ class _EditItemPageState extends State<EditItemPage> {
               },
             ),
             const SizedBox(height: 10),
-              TextFormField(
-                controller: expiryDateController,
-                decoration: const InputDecoration(
-                  labelText: 'Expiry Date',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.calendar_month),
-                ),
-                onTap: () async {
-                  DateTime? pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(2000),
-                    lastDate: DateTime(2101),
-                  );
-                  if (pickedDate != null) {
-                    setState(() {
-                      expiryDateController.text = DateFormat('yyyy-MM-dd').format(pickedDate);
-                    });
-                  }
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter the expiry date';
-                  }
-                  return null;
-                },
-            ),
             const SizedBox(height: 10),
-            TextFormField(
-              controller: categoryController,
-              decoration: const InputDecoration(
-                labelText: 'Category',
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(Icons.category),
-              ),
-            ),
             const SizedBox(height: 10),
             ElevatedButton(
               child: const Text('Save'),
@@ -147,9 +107,7 @@ class _EditItemPageState extends State<EditItemPage> {
                 // Check if any input field is empty
                 if (nameController.text.isEmpty ||
                     quantityController.text.isEmpty ||
-                    priceController.text.isEmpty ||
-                    expiryDateController.text.isEmpty ||
-                    categoryController.text.isEmpty) {
+                    priceController.text.isEmpty) {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -176,8 +134,6 @@ class _EditItemPageState extends State<EditItemPage> {
                   'itemName': nameController.text,
                   'quantity': int.parse(quantityController.text),
                   'price': double.parse(priceController.text),
-                  'expiryDate': expiryDateController.text,
-                  'category': categoryController.text,
                 };
 
                 // Call the updateItem function

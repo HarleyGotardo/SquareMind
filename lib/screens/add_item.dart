@@ -97,63 +97,9 @@ class _AddItemPageState extends State<AddItemPage> {
                 },
               ),
               const SizedBox(height: 16.0),
-              TextFormField(
-                controller: _date,
-                decoration: const InputDecoration(
-                  labelText: 'Expiry Date',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.calendar_month),
-                ),
-                onTap: () async {
-                  DateTime? pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(2000),
-                    lastDate: DateTime(2101),
-                  );
-                  if (pickedDate != null) {
-                    setState(() {
-                      _date.text = DateFormat('yyyy-MM-dd').format(pickedDate);
-                    });
-                  }
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter the expiry date';
-                  }
-                  return null;
-                },
-              ),              
+   
                       const SizedBox(height: 16.0),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Barcode',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.qr_code),
-                ),
-                onSaved: (value) => _item['barCode'] = value,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter the barcode';
-                  }
-                  return null;
-                },
-              ),
               const SizedBox(height: 16.0),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Category',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.category),
-                ),
-                onSaved: (value) => _item['category'] = value,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter the category';
-                  }
-                  return null;
-                },
-              ),
               // Add more TextFormFields for the other item fields...
             ],
           ),

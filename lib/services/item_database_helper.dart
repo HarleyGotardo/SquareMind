@@ -22,9 +22,6 @@ class ItemDatabaseHelper {
         itemName TEXT,
         quantity TEXT,
         price INT,
-        expiryDate TEXT,
-        barcode TEXT,
-        category TEXT
       )
     ''');
   }

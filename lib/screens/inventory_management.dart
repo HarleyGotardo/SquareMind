@@ -78,16 +78,32 @@ class _InventoryPageState extends State<InventoryPage> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Item Information'),
+        title: Center(child: const Text('Item Information:')),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Name: ${item['itemName']}'),
-            Text('Quantity: ${item['quantity']}'),
-            Text('Price: ${item['price']}'),
-            Text('Expiry Date: ${item['expiryDate']}'),
-            Text('Category: ${item['category']}'),
+            Row(
+              children: [
+                Icon(Icons.label),
+                SizedBox(width: 8),
+                Text('Name: ${item['itemName']}'),
+              ],
+            ),
+            Row(
+              children: [
+                Icon(Icons.inventory),
+                SizedBox(width: 8),
+                Text('Quantity: ${item['quantity']}'),
+              ],
+            ),
+            Row(
+              children: [
+                Icon(Icons.money),
+                SizedBox(width: 8),
+                Text('Price: ${item['price']}'),
+              ],
+            ),
           ],
         ),
         actions: [
