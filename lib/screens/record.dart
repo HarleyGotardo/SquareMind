@@ -173,7 +173,7 @@ class _RecordSaleState extends State<RecordSale> {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: const Text('Item recorded successfully'),
+                          title: const Text('Recorded'),
                           content: const Text('The item has been recorded successfully.'),
                           actions: [
                             TextButton(
