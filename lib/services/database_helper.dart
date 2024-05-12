@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:android_mims_development/model/user_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// A helper class for managing the SQLite database.
 class DatabaseHelper {
@@ -46,8 +47,26 @@ class DatabaseHelper {
           ''');
   }
 
-  // Helper methods
+  Future<void> loginUser(String username, String password) async {
+    // Check if the username and password are valid
+    bool isValid = await checkLogin(username, password);
 
+    if (isValid) {
+      // If login is successful, save the login status
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('isLoggedIn', true);
+      await prefs.setString('username', username);
+    } else {
+      throw Exception('Invalid username or password');
+    }
+  }
+
+  void logoutUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', false);
+  }
+
+  // Helper methods
   /// Inserts a user into the database.
   Future<int> insert(User user) async {
     Database db = await instance.database;
@@ -98,6 +117,16 @@ class DatabaseHelper {
       throw Exception('User not found');
     }
   }
+
+Future<String?> getUsername(String emailOrNumber) async {
+  final db = await database;
+  var result = await db.query(table, where: "$columnEmailOrNumber = ?", whereArgs: [emailOrNumber]);
+  if (result.isNotEmpty) {
+    return result.first[columnUsername] as String; // Accessing the 'username' column
+  } else {
+    throw Exception('User not found');
+  }
+}
 
   /// Clears the entire database.
   Future<void> clearDatabase() async {

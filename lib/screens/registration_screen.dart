@@ -102,8 +102,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     if (value!.isEmpty) {
                       return 'Please enter your username';
                     }
+                    Pattern pattern = r'^[a-zA-Z]+$';
+                    RegExp regex = RegExp(pattern as String);
+                    if (!regex.hasMatch(value)) {
+                      return 'Username must contain only letters';
+                    }
                     return null;
-                    // You can add more validation logic here if needed
                   },
                   decoration: InputDecoration(
                     labelText: 'Username',

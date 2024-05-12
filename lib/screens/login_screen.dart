@@ -7,6 +7,7 @@ import 'package:android_mims_development/services/database_helper.dart';
 // ignore: depend_on_referenced_packages
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -112,7 +113,12 @@ class _LoginPageState extends State<LoginPage> {
                       bool loginSuccessful =
                           await dbHelper.checkLogin(username, hashedPassword);
                       if (loginSuccessful) {
-                        Object? email = await dbHelper.getUserEmail(username);
+                        String? email = await dbHelper.getUserEmail(username) as String ?;
+                        SharedPreferences prefs = await SharedPreferences.getInstance();
+                        await prefs.setBool('isLoggedIn', true);
+                        if (email != null) {
+                            await prefs.setString('email', email);
+                        }
                         Navigator.push(
                           context,
                           MaterialPageRoute(

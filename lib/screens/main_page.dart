@@ -3,9 +3,10 @@ import 'package:android_mims_development/screens/dashboard.dart';
 import 'package:android_mims_development/screens/inventory_management.dart';
 import 'package:android_mims_development/screens/record.dart';
 import 'package:android_mims_development/screens/cloud_integration.dart';
-import 'package:android_mims_development/screens/settings.dart';
 import 'login_screen.dart';
 import 'package:android_mims_development/screens/profile.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:android_mims_development/services/database_helper.dart';
 
 class MainPage extends StatefulWidget {
   final String email;
@@ -66,36 +67,16 @@ class _MainPageState extends State<MainPage> {
             ListTile(
               leading: const Icon(Icons.account_circle),
               title: const Text('Profile'),
-              onTap: () {
+              onTap: () async {
+                final DatabaseHelper dbHelper = DatabaseHelper.instance;
+                String? username = await dbHelper.getUsername(widget.email);
                 Navigator.push(
                   context,
                   PageRouteBuilder(
                     transitionDuration: const Duration(
                         milliseconds: 500), // Set the duration of the animation
                     pageBuilder: (context, animation, secondaryAnimation) =>
-                        const ProfileScreen(),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      return FadeTransition(
-                        opacity: animation,
-                        child: child,
-                      );
-                    },
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                    transitionDuration: const Duration(
-                        milliseconds: 500), // Set the duration of the animation
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                        SettingsPage(),
+                        ProfileScreen(username: username ?? 'default'),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
                       return FadeTransition(
@@ -126,7 +107,9 @@ class _MainPageState extends State<MainPage> {
                         ),
                         TextButton(
                           child: const Text('Yes'),
-                          onPressed: () {
+                          onPressed: () async{
+                            SharedPreferences prefs = await SharedPreferences.getInstance();
+await prefs.setBool('isLoggedIn', false);
                             Navigator.push(
                               context,
                               MaterialPageRoute(

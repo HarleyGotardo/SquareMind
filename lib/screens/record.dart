@@ -70,6 +70,10 @@ class _RecordSaleState extends State<RecordSale> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter the quantity';
                   }
+                  int? quantity = int.tryParse(value);
+                  if (quantity == null || quantity <= 0) {
+                    return 'Please enter a positive number';
+                  }
                   return null;
                 },
               ),
