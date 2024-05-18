@@ -1,5 +1,5 @@
 # Android-Based Sari-Sari Store Inventory and Sales Management System Design Specifications (Square Mind)
-### The project aims to develop an Android-based sales and inventory management system for sari-sari stores. Currently, sari-sari stores manage their inventory and sales using paper-based or non-existent systems. This makes tracking inventory levels and sales data time-consuming as the store grows. The proposed system will allow sari-sari store owners to manage their inventory, record sales transactions, and generate sales reports using a mobile application. Key features include adding, editing, and removing inventory items, recording product sales, barcode scanning, and generating daily/weekly/monthly sales graphs. The system is designed to work offline but also integrate with an online database for data synchronization. This will ensure up-to-date data across devices. As Android is widely used, it will be the exclusive platform. Strong database security is also included to protect sensitive business data. The goal is to provide sari-sari store owners with a simple yet secure way to streamline their operations by digitizing paper-based processes. The user interface will be easy to use for all ages. This aims to improve business processes and access to real-time inventory and sales information.
+### The project aims to develop an Android-based sales and inventory management system for sari-sari stores. Currently, sari-sari stores manage their inventory and sales using paper-based or non-existent systems. This makes tracking inventory levels and sales data time-consuming as the store grows. The proposed system will allow sari-sari store owners to manage their inventory, record sales transactions, and generate sales reports using a mobile application. Key features include adding, editing, and removing inventory items, recording product sales, and visualizing daily sales and monthly total sales. The system is designed to work offline but also integrate with an online database for data synchronization. This will ensure up-to-date data across devices. As Android is widely used, it will be the exclusive platform. The goal is to provide sari-sari store owners with a simple way to streamline their operations by digitizing paper-based processes. The user interface will be easy to use for all ages. This aims to improve business processes and access to real-time inventory and sales information.
 
 | Internal Release Code    | Version | Date Released |
 |----------|------------|-------------------|
@@ -8,6 +8,7 @@
 | SM.020.008 | v2.0.0   | 2024-03-15 22:31:40| 
 | SM.020.011 | v2.1.0   | 2024-04-14 19:30:31| 
 | SM.020.012 | v2.1.0   | 2024-05-03 16:00:00| 
+| SM.020.013 | v2.1.0   | 2024-05-12 15:00:00| 
 
 ## Releases
 ### SM.010.000
@@ -53,6 +54,10 @@
 
 ### SM.020.012
 - Completed Dashboard Functionality.
+
+### SM.020.013
+- BUG - 0001, BUG - 0002 has been fixed.
+- Removed the expiry date, barcode, category information in item database. To make the app much simpler.
 
 ## Important Links
 - Design Specs: [Design Specifications](https://github.com/HarleyGotardo/square-mind/blob/main/README_FILES/MAIN_MD/DesignSpecificationDocument.md)
