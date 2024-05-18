@@ -1,3 +1,4 @@
+import 'package:android_mims_development/screens/firebase_login.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:android_mims_development/screens/firebase_login.dart';
@@ -21,7 +22,6 @@ class _FirebaseSignInPage extends State<FirebaseSignInPage> {
       );
 
       print('Signed in user: ${userCredential.user!.email}');
-
       // Show an alert dialog
       showDialog(
         context: context,
@@ -34,29 +34,45 @@ class _FirebaseSignInPage extends State<FirebaseSignInPage> {
                 child: Text('OK'),
                 onPressed: () {
                   Navigator.of(context).pop();
+                  Navigator.pop(context); // Go back to the previous page (FirebaseLogInPage)
                 },
               ),
             ],
           );
         },
       );
-
       // Clear the input fields
       _emailController.clear();
       _passwordController.clear();
 
-      // Navigate to FirebaseLoginPage
     } catch (e) {
+      String errorMessage = 'Failed to sign in: $e';
       if (e is FirebaseAuthException) {
         if (e.code == 'weak-password') {
-          print('The password provided is too weak.');
+          errorMessage = 'The password provided is too weak.';
         } else if (e.code == 'email-already-in-use') {
-          print('The account already exists for that email.');
+          errorMessage = 'The account already exists for that email.';
         }
-      } else {
-        print('Failed to sign in: $e');
       }
-      // Handle sign-in errors (e.g., display an error message)
+
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text(errorMessage),
+            actions: <Widget>[
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+          
+        },
+      );
     }
   }
 

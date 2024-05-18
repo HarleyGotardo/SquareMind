@@ -20,7 +20,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
-
+  bool isLoggedIn = false;
   // Define the colors based on the 60-30-10 rule
   static const Color dominantColor =
       Color.fromARGB(255, 177, 172, 166); // Dominant color (60%)
@@ -181,7 +181,7 @@ await prefs.setBool('isLoggedIn', false);
       case 2:
         return RecordSale(email: widget.email);
       case 3:
-        return FirebaseLoginPage();
+        return CloudPage();
       default:
         return Container();
     }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:android_mims_development/screens/firebase_signin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:android_mims_development/screens/cloud_integration.dart';
 
 class FirebaseLoginPage extends StatefulWidget {
   @override
@@ -66,64 +67,65 @@ class _FirebaseLoginPageState extends State<FirebaseLoginPage> {
                 },
               ),
               SizedBox(height: 16.0),
-              ElevatedButton(
-                onPressed: () async {
-                  try {
-                    await FirebaseAuth.instance.signInWithEmailAndPassword(
-                      email: _emailController.text.trim(),
-                      password: _passwordController.text,
-                    );
+ElevatedButton(
+  onPressed: () async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text,
+      );
 
-                    // If the sign in is successful, show an AlertDialog
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Text('Login Successful'),
-                          content: Text('You have successfully logged in.'),
-                          actions: <Widget>[
-                            TextButton(
-                              child: Text('OK'),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  } catch (e) {
-                    if (e is FirebaseAuthException) {
-                      String message = 'An error occurred. Please try again.';
-                      if (e.code == 'user-not-found') {
-                        message = 'No user found for that email.';
-                      } else if (e.code == 'wrong-password') {
-                        message = 'Wrong password provided for that user.';
-                      }
-
-                      // Show an AlertDialog with the error message
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: Text('Error'),
-                            content: Text(message),
-                            actions: <Widget>[
-                              TextButton(
-                                child: Text('OK'),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    }
-                  }
+      // Show an AlertDialog when login is successful
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Success'),
+            content: Text('Logged in successfully.'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop(); // Close the dialog
+                  Navigator.pop(context); // Go back to the previous page
                 },
-                child: Text('Login'),
               ),
+            ],
+          );
+        },
+      );
+    } catch (e) {
+      if (e is FirebaseAuthException) {
+        String message = 'Non-Existent Account.';
+        if (e.code == 'user-not-found') {
+          message = 'No user found for that email.';
+        } else if (e.code == 'wrong-password') {
+          message = 'Wrong password provided for that user.';
+        }
+
+        // Show an AlertDialog with the error message
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Error'),
+              content: Text(message),
+              actions: <Widget>[
+                TextButton(
+                  child: Text('OK'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }
+  },
+  child: Text('Login'),
+),
               SizedBox(height: 16.0),
               Text("Don't have an account?"),
               SizedBox(height: 16.0),
