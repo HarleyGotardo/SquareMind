@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="google_app_id">1:787842851588:android:b9ff0be978ae4a65afe651</string>
+    <string name="firebase_database_url">https://quick-stock-4100c-default-rtdb.firebaseio.com/</string>
+    <string name="project_id">quick-stock-4100c</string>
+    <string name="storage_bucket">gs://quick-stock-4100c.appspot.com</string>
+    <string name="google_api_key">AIzaSyAsU4oyoQUJvoklCH6EVPx0c5llcYSps0w</string>
+    <string name="gcm_defaultSenderId">787842851588</string>
+</resources>

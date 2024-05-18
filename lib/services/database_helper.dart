@@ -141,4 +141,18 @@ Future<String?> getUsername(String emailOrNumber) async {
     // Recreate the database
     _database = await _initDatabase();
   }
+
+Future<Map<String, String>> getUserCredentials() async {
+  final db = await database;
+  var result = await db.query(table, limit: 1);
+  if (result.isNotEmpty) {
+    return {
+      'email': result.first[columnEmailOrNumber] as String,
+      'password': result.first[columnPassword] as String,
+    };
+  } else {
+    throw Exception('User not found');
+  }
+}
+
 }

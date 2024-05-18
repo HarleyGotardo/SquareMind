@@ -7,6 +7,7 @@ import 'login_screen.dart';
 import 'package:android_mims_development/screens/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:android_mims_development/services/database_helper.dart';
+import 'package:android_mims_development/screens/firebase_login.dart';
 
 class MainPage extends StatefulWidget {
   final String email;
@@ -180,7 +181,7 @@ await prefs.setBool('isLoggedIn', false);
       case 2:
         return RecordSale(email: widget.email);
       case 3:
-        return const CloudPage();
+        return FirebaseLoginPage();
       default:
         return Container();
     }
