@@ -110,7 +110,6 @@ class _AddItemPageState extends State<AddItemPage> {
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             _formKey.currentState!.save();
-            _item['expiryDate'] = _date.text;  // Save the expiry date
             db.addItem(_item);
             Navigator.pop(context);
           } else {

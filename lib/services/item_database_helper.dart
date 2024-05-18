@@ -21,7 +21,7 @@ class ItemDatabaseHelper {
         id INTEGER PRIMARY KEY,
         itemName TEXT,
         quantity TEXT,
-        price INT,
+        price INT
       )
     ''');
   }
