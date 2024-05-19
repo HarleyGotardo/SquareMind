@@ -64,9 +64,9 @@ class _DashboardPageState extends State<DashboardPage> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('Total Sales Today', textAlign: TextAlign.center,style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                                Text('💵 Sales Today', textAlign: TextAlign.center,style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                                 Text(DateFormat('yyyy-MM-dd').format(DateTime.now()), style: TextStyle(fontSize: 16)),
-                                Text('P ${snapshot.data}', style: TextStyle(fontSize: 30)),
+                                Text('P${snapshot.data}0', style: TextStyle(fontSize: 30)),
                               ],
                             ),
                           ),
@@ -90,7 +90,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  'Items Sold:',
+                                  '✅ Items Sold:',
                                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                                 ),
                               ),
@@ -102,7 +102,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                   Map<String, dynamic> item = snapshot.data![index];
                                   return Card(
                                     child: ListTile(
-                                      title: Text('Item: ${item['itemName']} - Sold: ${item['totalQuantity']}'),
+                                      title: Text('📦Item: ${item['itemName']} - ✅Sold: ${item['totalQuantity']}'),
                                     ),
                                   );
                                 },
@@ -131,7 +131,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  'Total Sales By Month:',
+                                  '🗓️ Total Sales By Month:',
                                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                                 ),
                               ),
@@ -143,7 +143,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                   MapEntry<String, double> entry = snapshot.data!.entries.elementAt(index);
                                   return Card(
                                     child: ListTile(
-                                      title: Text('Month: ${entry.key} ~ Total: P ${entry.value}'),
+                                      title: Text('📅Month: ${entry.key} ~ 💵Total: P ${entry.value}'),
                                     ),
                                   );
                                 },
@@ -172,7 +172,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  'Item Quantities:',
+                                  '🔢 Item Quantities:',
                                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                                 ),
                               ),
@@ -193,7 +193,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                       } else if (snapshot.hasData) {
                                         return Card(
                                           child: ListTile(
-                                            title: Text('Item: $itemName - Quantity: ${snapshot.data}'),
+                                            title: Text('📦Item: $itemName - 🔢Quantity: ${snapshot.data}'),
                                           ),
                                         );
                                       } else {

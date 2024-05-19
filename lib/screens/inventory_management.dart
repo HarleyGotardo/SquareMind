@@ -78,7 +78,7 @@ class _InventoryPageState extends State<InventoryPage> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Center(child: const Text('Item Information:')),
+        title: Center(child: const Text('📝Item Information:')),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,

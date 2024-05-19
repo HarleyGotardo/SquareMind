@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:android_mims_development/screens/firebase_signin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:android_mims_development/screens/cloud_integration.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FirebaseLoginPage extends StatefulWidget {
   @override
@@ -70,11 +71,11 @@ class _FirebaseLoginPageState extends State<FirebaseLoginPage> {
 ElevatedButton(
   onPressed: () async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text,
-      );
-
+await FirebaseAuth.instance.signInWithEmailAndPassword(
+  email: _emailController.text.trim(),
+  password: _passwordController.text,
+);
+// SharedPreferences prefs = await SharedPreferences.getInstance();
       // Show an AlertDialog when login is successful
       showDialog(
         context: context,
@@ -87,6 +88,7 @@ ElevatedButton(
                 child: Text('OK'),
                 onPressed: () {
                   Navigator.of(context).pop(); // Close the dialog
+                   // Refresh the CloudPage
                   Navigator.pop(context); // Go back to the previous page
                 },
               ),
