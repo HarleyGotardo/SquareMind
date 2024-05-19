@@ -9,6 +9,7 @@
 | SM.020.011 | v2.1.0   | 2024-04-14 19:30:31| 
 | SM.020.012 | v2.1.0   | 2024-05-03 16:00:00| 
 | SM.020.013 | v2.1.0   | 2024-05-12 15:00:00| 
+| SM.020.014 | v2.1.0   | 2024-05-19 14:00:00| 
 
 ## Releases
 ### SM.010.000
@@ -58,6 +59,15 @@
 ### SM.020.013
 - BUG - 0001, BUG - 0002 has been fixed.
 - Removed the expiry date, barcode, category information in item database. To make the app much simpler.
+
+### SM.020.014
+- Firebase Login and Create Account Implemented for Cloud Integration.
+- Fixed some routing inconsistencies.
+- Also added some sub features:
+- When in main page, pressing the back button requires to press it twice to exit the app.
+- Added some icon emojis for more colors and life to the app.
+- Sharedpreferences implemented.
+- Changed the application icon logo to be based on the theme of the system.
 
 ## Important Links
 - Design Specs: [Design Specifications](https://github.com/HarleyGotardo/square-mind/blob/main/README_FILES/MAIN_MD/DesignSpecificationDocument.md)
