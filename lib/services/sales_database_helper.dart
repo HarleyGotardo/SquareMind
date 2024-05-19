@@ -1,7 +1,6 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'item_database_helper.dart';
-import 'package:intl/intl.dart';
 
 class SaleDatabaseHelper {
   final String userEmailOrNumber;
@@ -109,4 +108,30 @@ Future<Map<String, double>> getTotalSalesByMonth() async {
 
   return totalSalesByMonth;
 }
+Future<Map<String, List<Map<String, dynamic>>>> getAllSaleItems() async {
+  final db = await database;
+  final result = await db.query('SaleItem');
+
+  Map<String, List<Map<String, dynamic>>> items = {};
+
+  for (var item in result) {
+    String itemName = item['itemName'].toString();
+    int quantity = int.tryParse(item['quantity'] as String) ?? 0;
+    String date = item['date'].toString();
+    double totalPrice = (item['totalPrice'] as int).toDouble();
+
+    if (!items.containsKey(itemName)) {
+      items[itemName] = [];
+    }
+
+    items[itemName]?.add({
+      'quantity': quantity,
+      'date': date,
+      'totalPrice': totalPrice,
+    });
+  }
+
+  return items;
+}
+
 }

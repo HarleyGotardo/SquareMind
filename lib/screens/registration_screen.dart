@@ -64,8 +64,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 TextFormField(
                   controller: _numberController,
                   decoration: InputDecoration(
-                    labelText: 'Email or Number',
-                    hintText: 'Enter email or phone number',
+                    labelText: 'Email Address',
+                    hintText: 'Enter email address',
                     hintStyle: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                     labelStyle: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                     border: OutlineInputBorder(
@@ -87,10 +87,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     prefixIcon: const Icon(Icons.mail), // Add mail icon
                   ),
                   validator: (value) {
-                    Pattern pattern = r'^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})|(\+?[0-9]{10,14}$)';
+                    Pattern pattern = r'^[a-zA-Z0-9._%-]+@gmail\.com$';
                     RegExp regex = RegExp(pattern as String);
                     if (!regex.hasMatch(value!)) {
-                      return 'Enter a valid email or phone number';
+                      return 'Enter a valid Gmail address';
                     }
                     return null;
                   },
@@ -184,7 +184,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       // Show an error message
                       // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Email or number already exists!')),
+                        const SnackBar(content: Text('Email already exists!')),
                       );
                       return;
                     } else {

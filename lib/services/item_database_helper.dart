@@ -105,7 +105,27 @@ class ItemDatabaseHelper {
     return totalQuantity;
   }
 
-  Future<List<String>> getAllItemNames() async {
+  Future<Map<String, Map<String, dynamic>>> getAllItemNames() async {
+  final db = await database;
+  final result = await db.query('Item');
+
+  Map<String, Map<String, dynamic>> items = {};
+
+  for (var item in result) {
+    String itemName = item['itemName'].toString();
+    int quantity = item['quantity'] as int;
+    double price = item['price'] as double;
+
+    items[itemName] = {
+      'quantity': quantity,
+      'price': price,
+    };
+  }
+
+  return items;
+}
+
+  Future<List<String>> getAllItemNames2() async {
     final db = await database;
     final result = await db.query('Item');
   

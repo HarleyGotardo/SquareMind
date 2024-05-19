@@ -21,7 +21,7 @@ class _DashboardPageState extends State<DashboardPage> {
   void initState() {
     super.initState();
     totalSalesFuture = saleDb.calculateTotalSales();
-    itemNamesFuture = itemDb.getAllItemNames();
+    itemNamesFuture = itemDb.getAllItemNames2();
   }
 
   @override
