@@ -15,9 +15,25 @@ class _RecordSaleState extends State<RecordSale> {
   final TextEditingController itemController = TextEditingController();
   final TextEditingController quantityController = TextEditingController();
   final TextEditingController _date = TextEditingController();
-  late SaleDatabaseHelper saleDb = SaleDatabaseHelper(userEmailOrNumber: widget.email, itemDbHelper: itemDb);
-  late ItemDatabaseHelper itemDb = ItemDatabaseHelper(userEmailOrNumber: widget.email);
+  late SaleDatabaseHelper saleDb;
+  late ItemDatabaseHelper itemDb;
   final _formKey = GlobalKey<FormState>();
+  List<String> itemNames = [];
+
+  @override
+  void initState() {
+    super.initState();
+    itemDb = ItemDatabaseHelper(userEmailOrNumber: widget.email);
+    saleDb = SaleDatabaseHelper(userEmailOrNumber: widget.email, itemDbHelper: itemDb);
+    fetchItemNames();
+  }
+
+  void fetchItemNames() async {
+    final items = await itemDb.getItems();
+    setState(() {
+      itemNames = items.map((item) => item['itemName'] as String).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +41,12 @@ class _RecordSaleState extends State<RecordSale> {
       appBar: AppBar(
         title: Row(
           children: [
-            Icon(Icons.list), // This is the record icon
-            SizedBox(width: 8), // This adds some spacing between the icon and the text
+            Icon(Icons.list),
+            SizedBox(width: 8),
             Text(
               'Sales Record',
               style: TextStyle(
-              fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ],
@@ -43,18 +59,60 @@ class _RecordSaleState extends State<RecordSale> {
           key: _formKey,
           child: Column(
             children: [
-              TextFormField(
-                controller: itemController,
-                decoration: const InputDecoration(
-                  labelText: 'Item',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.inventory),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter the item';
+              Autocomplete<String>(
+                optionsBuilder: (TextEditingValue textEditingValue) {
+                  if (textEditingValue.text.isEmpty) {
+                    return const Iterable<String>.empty();
                   }
-                  return null;
+                  return itemNames.where((String option) {
+                    return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
+                  });
+                },
+                onSelected: (String selection) {
+                  itemController.text = selection;
+                },
+                fieldViewBuilder: (BuildContext context, TextEditingController fieldController, FocusNode fieldFocusNode, VoidCallback onFieldSubmitted) {
+                  return TextFormField(
+                    controller: fieldController,
+                    focusNode: fieldFocusNode,
+                    decoration: const InputDecoration(
+                      labelText: 'Item',
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.inventory),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter the item';
+                      }
+                      return null;
+                    },
+                  );
+                },
+                optionsViewBuilder: (BuildContext context, AutocompleteOnSelected<String> onSelected, Iterable<String> options) {
+                  return Align(
+                    alignment: Alignment.topLeft,
+                    child: Material(
+                      elevation: 4.0,
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(maxHeight: 200),
+                        child: ListView.builder(
+                          padding: EdgeInsets.all(8.0),
+                          itemCount: options.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final String option = options.elementAt(index);
+                            return GestureDetector(
+                              onTap: () {
+                                onSelected(option);
+                              },
+                              child: ListTile(
+                                title: Text(option),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  );
                 },
               ),
               const SizedBox(height: 10),
@@ -132,10 +190,9 @@ class _RecordSaleState extends State<RecordSale> {
                         );
                       },
                     );
-                    return; // Return here to avoid proceeding further
+                    return;
                   }
 
-                  // Check if the quantity is sufficient
                   int itemQuantity = await itemDb.getItemQuantity(item);
                   if (itemQuantity - inputQuantity < 0) {
                     showDialog(
@@ -153,22 +210,19 @@ class _RecordSaleState extends State<RecordSale> {
                         );
                       },
                     );
-                    return; // Return here to avoid proceeding further
+                    return;
                   }
 
-                  // Create a sale item
                   final Map<String, dynamic> saleItem = {
                     'itemName': item,
                     'quantity': inputQuantity,
-                    'date': date.toIso8601String(), // assuming the date is stored as a string
-                    // add other fields as necessary
+                    'date': date.toIso8601String(),
                   };
 
                   try {
-                    // Add the sale item to the database
                     await saleDb.addSaleItem(saleItem);
                     await itemDb.checkAndDeleteIfZeroQuantity(item);
-                    setState(() {}); // Call setState to refresh the UI
+                    setState(() {});
                     showDialog(
                       context: context,
                       builder: (context) {
@@ -186,7 +240,6 @@ class _RecordSaleState extends State<RecordSale> {
                     );
                   } catch (error) {
                     print('Error adding sale item: $error');
-                    // Handle error here
                   }
                 },
                 child: Text('Record Sale'),

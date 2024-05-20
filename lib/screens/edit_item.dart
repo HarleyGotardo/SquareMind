@@ -1,7 +1,6 @@
 import 'package:android_mims_development/services/item_database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 
 class EditItemPage extends StatefulWidget {
   final Map<String, dynamic> item;

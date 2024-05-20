@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:android_mims_development/screens/dashboard.dart';
 import 'package:android_mims_development/screens/inventory_management.dart';
 import 'package:android_mims_development/screens/record.dart';
-import 'package:android_mims_development/screens/cloud_integration.dart';
 import 'login_screen.dart';
 import 'package:android_mims_development/screens/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,6 +26,17 @@ class _MainPageState extends State<MainPage> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  String getGreeting() {
+    var hour = DateTime.now().hour;
+    if (hour < 12) {
+      return 'Good Morning';
+    }
+    if (hour < 17) {
+      return 'Good Afternoon';
+    }
+    return 'Good Evening';
   }
 
   @override
@@ -65,17 +75,26 @@ class _MainPageState extends State<MainPage> {
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
-              const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(100, 234, 221, 255),
-                ),
-                child: Text(
-                  'Menu',
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
+              FutureBuilder<String>(
+              future: DatabaseHelper.instance.getUsername(widget.email).then((value) => value ?? 'default'),
+                builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                  if (snapshot.hasData) {
+                    return DrawerHeader(
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(100, 234, 221, 255),
+                      ),
+                      child: Text(
+                        '🗒️${getGreeting()}, ${snapshot.data}',
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    );
+                  } else {
+                    return const CircularProgressIndicator();
+                  }
+                },
               ),
               ListTile(
                 leading: const Icon(Icons.account_circle),
@@ -153,10 +172,6 @@ class _MainPageState extends State<MainPage> {
               icon: Icon(Icons.note),
               label: 'Sales Record',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.cloud),
-              label: 'Cloud',
-            ),
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: const Color.fromARGB(255, 0, 0, 0),
@@ -180,8 +195,6 @@ class _MainPageState extends State<MainPage> {
         return InventoryPage(email: widget.email);
       case 2:
         return RecordSale(email: widget.email);
-      case 3:
-        return CloudPage();
       default:
         return Container();
     }

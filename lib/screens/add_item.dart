@@ -107,11 +107,27 @@ class _AddItemPageState extends State<AddItemPage> {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.save),
-        onPressed: () {
+        onPressed: () async {
           if (_formKey.currentState!.validate()) {
             _formKey.currentState!.save();
-            db.addItem(_item);
-            Navigator.pop(context);
+            try {
+              await db.addItem(_item);
+              Navigator.pop(context);
+            } catch (e) {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('Duplicate Item Name'),
+                  content: const Text('An item with this name already exists.'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text('OK'),
+                    ),
+                  ],
+                ),
+              );
+            }
           } else {
             showDialog(
               context: context,
