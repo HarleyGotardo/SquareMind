@@ -8,7 +8,6 @@ import 'login_screen.dart';
 import 'package:android_mims_development/screens/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:android_mims_development/services/database_helper.dart';
-import 'package:android_mims_development/screens/firebase_login.dart';
 
 class MainPage extends StatefulWidget {
   final String email;
