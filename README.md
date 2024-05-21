@@ -10,6 +10,7 @@
 | SM.020.012 | v2.1.0   | 2024-05-03 16:00:00| 
 | SM.020.013 | v2.1.0   | 2024-05-12 15:00:00| 
 | SM.020.014 | v2.1.0   | 2024-05-19 14:00:00| 
+| SM.030.002 | v3.1.0   | 2024-05-21 9:20:00| 
 
 ## Releases
 ### SM.010.000
@@ -68,6 +69,10 @@
 - Added some icon emojis for more colors and life to the app.
 - Sharedpreferences implemented.
 - Changed the application icon logo to be based on the theme of the system.
+
+### SM.030.002
+- Removed the Cloud Integration Page: In this commit. We decided to remove the cloud integration module entirely, due to its hard to implement. We are sorry for this. But let this just be considered as a study for future improvement. Thank you. But several improvement from the other module was implemented. In Inventory Module - Duplicate item names (not case sensitive) will not be added anymore. In Sales Record Module - There is now suggestions to what available item names are existing in the item database.
+- Finalizations: (1)Dashboard: Fixed some unscrollable sections. (2)Improved Greetings. (3)New release. (4)Inventory management: if an item is successfully added, it will automatically refresh the page.
 
 ## Important Links
 - Design Specs: [Design Specifications](https://github.com/HarleyGotardo/square-mind/blob/main/README_FILES/MAIN_MD/DesignSpecificationDocument.md)
