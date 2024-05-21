@@ -106,7 +106,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                           Map<String, dynamic> item = snapshot.data![index];
                                           return Card(
                                             child: ListTile(
-                                              title: Text('📦Item: ${item['itemName']} - ✅Sold: ${item['totalQuantity']}'),
+                                              title: Text('📦Item: ${item['itemName']} - ✅Sold: ${item['totalQuantity']} pcs.'),
                                             ),
                                           );
                                         },
@@ -151,7 +151,7 @@ Expanded(
               MapEntry<String, double> entry = snapshot.data!.entries.elementAt(index);
               return Card(
                 child: ListTile(
-                  title: Text('📅Month: ${entry.key} ~ 💵Total: P ${entry.value}'),
+                  title: Text('📅Month: ${entry.key} ~ 💵Total: ₱${entry.value}'),
                 ),
               );
             },
@@ -205,7 +205,7 @@ Expanded(
                   } else if (snapshot.hasData) {
                     return Card(
                       child: ListTile(
-                        title: Text('📦Item: $itemName - 🔢Quantity: ${snapshot.data}'),
+                        title: Text('📦Item: $itemName - 🔢Quantity: ${snapshot.data} pcs'),
                       ),
                     );
                   } else {

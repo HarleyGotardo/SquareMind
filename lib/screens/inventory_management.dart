@@ -103,14 +103,14 @@ class _InventoryPageState extends State<InventoryPage> {
               children: [
                 Icon(Icons.inventory),
                 SizedBox(width: 8),
-                Text('Quantity: ${item['quantity']}'),
+                Text('Quantity: ${item['quantity']} pcs.'),
               ],
             ),
             Row(
               children: [
                 Icon(Icons.money),
                 SizedBox(width: 8),
-                Text('Price: ${item['price']}'),
+                Text('Price each: ₱${item['price']}'),
               ],
             ),
           ],
