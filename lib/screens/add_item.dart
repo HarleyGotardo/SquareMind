@@ -1,11 +1,11 @@
 import 'package:android_mims_development/services/item_database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 
 class AddItemPage extends StatefulWidget {
   final String email;
-  const AddItemPage({super.key, required this.email, required Map<String, dynamic> item});
+  final Function refresh;
+  const AddItemPage({super.key, required this.email, required this.refresh, required Map<String, dynamic> item});
 
   @override
   _AddItemPageState createState() => _AddItemPageState();
@@ -15,7 +15,6 @@ class _AddItemPageState extends State<AddItemPage> {
   late ItemDatabaseHelper db;
   final _formKey = GlobalKey<FormState>();
   final Map<String, dynamic> _item = {};
-  final TextEditingController _date = TextEditingController();
 
   @override
   void initState() {
@@ -80,7 +79,7 @@ class _AddItemPageState extends State<AddItemPage> {
                 decoration: const InputDecoration(
                   labelText: 'Price',
                   border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.attach_money),
+                  prefixIcon: Icon(Icons.money),
                 ),
                 keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[
@@ -112,7 +111,23 @@ class _AddItemPageState extends State<AddItemPage> {
             _formKey.currentState!.save();
             try {
               await db.addItem(_item);
-              Navigator.pop(context);
+              widget.refresh();
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('Success'),
+                  content: const Text('Item has been successfully added.'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context); // Close the dialog
+                        Navigator.pop(context); // Close the page
+                      },
+                      child: const Text('OK'),
+                    ),
+                  ],
+                ),
+              );
             } catch (e) {
               showDialog(
                 context: context,
@@ -143,8 +158,7 @@ class _AddItemPageState extends State<AddItemPage> {
               ),
             );
           }
-        },
-      ),
+        },      ),
     );
   }
 }

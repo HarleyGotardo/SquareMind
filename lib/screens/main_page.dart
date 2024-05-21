@@ -60,7 +60,7 @@ class _MainPageState extends State<MainPage> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Quick Stock',
+            'Quick Stock⚡',
             style: TextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.normal,
@@ -84,7 +84,7 @@ class _MainPageState extends State<MainPage> {
                         color: Color.fromARGB(100, 234, 221, 255),
                       ),
                       child: Text(
-                        '🗒️${getGreeting()}, ${snapshot.data}',
+                        '🗒️${getGreeting()}, ${snapshot.data}. Is business doing great? Keep it up. ✨',
                         style: TextStyle(
                             color: Color.fromARGB(255, 0, 0, 0),
                             fontSize: 24,

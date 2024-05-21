@@ -27,6 +27,15 @@ class _InventoryPageState extends State<InventoryPage> {
       }
     });
   }
+  void refreshPage() async {
+              final itemList = await db.getItems();
+              for (var item in itemList) {
+                await db.checkAndDeleteIfZeroQuantity(item['itemName']);
+              }
+              setState(() {
+                items = db.getItems();
+              });
+  }
 
   void deleteItem(BuildContext context, Map<String, dynamic> item) {
     showDialog(
@@ -135,13 +144,7 @@ class _InventoryPageState extends State<InventoryPage> {
           IconButton(
             icon: Icon(Icons.refresh),
             onPressed: () async {
-              final itemList = await db.getItems();
-              for (var item in itemList) {
-                await db.checkAndDeleteIfZeroQuantity(item['itemName']);
-              }
-              setState(() {
-                items = db.getItems();
-              });
+              refreshPage();
             },
           ),
         ],
@@ -181,6 +184,11 @@ class _InventoryPageState extends State<InventoryPage> {
                     final itemList = filteredItems.isNotEmpty
                         ? filteredItems
                         : snapshot.data!;
+                    if (itemList.isEmpty) {
+                      return const Center(
+                        child: Text('Your Inventory is empty. Add items now. 📦'),
+                      );
+                    }
                     return GridView.builder(
                       itemCount: itemList.length,
                       gridDelegate:
@@ -261,6 +269,7 @@ class _InventoryPageState extends State<InventoryPage> {
             context,
             MaterialPageRoute(
                 builder: (context) => AddItemPage(
+                      refresh: refreshPage,
                       email: widget.email,
                       item: const {},
                     )),

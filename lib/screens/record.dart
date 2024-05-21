@@ -253,7 +253,7 @@ class _RecordSaleState extends State<RecordSale> {
                       return CircularProgressIndicator();
                     } else if (snapshot.hasError) {
                       return Text('Error: ${snapshot.error}');
-                    } else {
+                    } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
                       return ListView.builder(
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
@@ -274,6 +274,8 @@ class _RecordSaleState extends State<RecordSale> {
                           );
                         },
                       );
+                    } else {
+                      return Center(child: Text('No data yet. Start recording sales now. 🧾'));
                     }
                   },
                 ),
