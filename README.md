@@ -70,7 +70,7 @@
 - Sharedpreferences implemented.
 - Changed the application icon logo to be based on the theme of the system.
 
-### SM.030.002
+### Final: SM.030.002
 - Removed the Cloud Integration Page: In this commit. We decided to remove the cloud integration module entirely, due to its hard to implement. We are sorry for this. But let this just be considered as a study for future improvement. Thank you. But several improvement from the other module was implemented. In Inventory Module - Duplicate item names (not case sensitive) will not be added anymore. In Sales Record Module - There is now suggestions to what available item names are existing in the item database.
 - Finalizations: (1)Dashboard: Fixed some unscrollable sections. (2)Improved Greetings. (3)New release. (4)Inventory management: if an item is successfully added, it will automatically refresh the page.
 
