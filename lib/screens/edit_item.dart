@@ -127,6 +127,29 @@ class _EditItemPageState extends State<EditItemPage> {
                   return; // Do not save if any field is empty
                 }
 
+                // Check if an item with the same name already exists
+                bool? doesItemExist = await db?.itemNameExists(nameController.text.trim());
+                if (doesItemExist ?? false) {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Error'),
+                        content: const Text('An item with this name already exists'),
+                        actions: <Widget>[
+                          TextButton(
+                            child: const Text('OK'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                  return; // Do not save if item with same name exists
+                }
+
                 // Create a new map with the updated values
                 Map<String, dynamic> updatedItem = {
                   'id': widget.item['id'],
@@ -140,8 +163,7 @@ class _EditItemPageState extends State<EditItemPage> {
                 // ignore: use_build_context_synchronously
                 Navigator.pop(context);
               },
-            ),
-          ],
+            ),          ],
         ),
       ),
     );

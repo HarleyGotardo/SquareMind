@@ -265,7 +265,7 @@ class _RecordSaleState extends State<RecordSale> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text('📦Item Name: ${item['itemName']}'),
-                                  Text('🔢Quantity: ${item['quantity']}'),
+                                  Text('🔢Quantity: ${item['quantity']} pcs.'),
                                   Text('🗓️Date: ${DateFormat('yyyy-MM-dd').format(DateTime.parse(item['date']))}'),
                                   Text('💵Total: ₱${item['totalPrice']}'),
                                 ],
