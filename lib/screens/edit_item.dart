@@ -17,7 +17,7 @@ class EditItemPage extends StatefulWidget {
 }
 
 class _EditItemPageState extends State<EditItemPage> {
-  late TextEditingController nameController;
+  // late TextEditingController nameController;
   late TextEditingController quantityController;
   late TextEditingController priceController;
   ItemDatabaseHelper? db;
@@ -26,7 +26,7 @@ class _EditItemPageState extends State<EditItemPage> {
   void initState() {
     super.initState();
     db = ItemDatabaseHelper(userEmailOrNumber: widget.email);
-    nameController = TextEditingController(text: widget.item['itemName']);
+    // nameController = TextEditingController(text: widget.item['itemName']);
     quantityController =
         TextEditingController(text: widget.item['quantity'].toString());
     priceController =
@@ -43,14 +43,6 @@ class _EditItemPageState extends State<EditItemPage> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
-            TextFormField(
-              controller: nameController,
-              decoration: const InputDecoration(
-                labelText: 'Name',
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(Icons.text_fields),
-              ),
-            ),
             const SizedBox(height: 10),
             TextFormField(
               controller: quantityController,
@@ -104,8 +96,7 @@ class _EditItemPageState extends State<EditItemPage> {
               child: const Text('Save'),
               onPressed: () async {
                 // Check if any input field is empty
-                if (nameController.text.isEmpty ||
-                    quantityController.text.isEmpty ||
+                if (quantityController.text.isEmpty ||
                     priceController.text.isEmpty) {
                   showDialog(
                     context: context,
@@ -127,33 +118,9 @@ class _EditItemPageState extends State<EditItemPage> {
                   return; // Do not save if any field is empty
                 }
 
-                // Check if an item with the same name already exists
-                bool? doesItemExist = await db?.itemNameExists(nameController.text.trim());
-                if (doesItemExist ?? false) {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: const Text('Error'),
-                        content: const Text('An item with this name already exists'),
-                        actions: <Widget>[
-                          TextButton(
-                            child: const Text('OK'),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                  return; // Do not save if item with same name exists
-                }
-
                 // Create a new map with the updated values
                 Map<String, dynamic> updatedItem = {
                   'id': widget.item['id'],
-                  'itemName': nameController.text,
                   'quantity': int.parse(quantityController.text),
                   'price': double.parse(priceController.text),
                 };
