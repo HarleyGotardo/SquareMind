@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android_mims_development">
+    package="com.squaremind.quickstock">
     <application
         android:label="Quick Stock"
         android:name="${applicationName}"

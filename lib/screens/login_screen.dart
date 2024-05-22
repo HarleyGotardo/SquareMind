@@ -1,9 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:android_mims_development/screens/main_page.dart';
-import 'package:android_mims_development/screens/registration_screen.dart';
+import 'package:squaremind_quickstock/screens/main_page.dart';
+import 'package:squaremind_quickstock/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:android_mims_development/services/database_helper.dart';
+import 'package:squaremind_quickstock/services/database_helper.dart';
 // ignore: depend_on_referenced_packages
 import 'package:crypto/crypto.dart';
 import 'dart:convert';

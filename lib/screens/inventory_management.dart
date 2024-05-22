@@ -1,6 +1,6 @@
-import 'package:android_mims_development/screens/add_item.dart';
-import 'package:android_mims_development/screens/edit_item.dart';
-import 'package:android_mims_development/services/item_database_helper.dart';
+import 'package:squaremind_quickstock/screens/add_item.dart';
+import 'package:squaremind_quickstock/screens/edit_item.dart';
+import 'package:squaremind_quickstock/services/item_database_helper.dart';
 import 'package:flutter/material.dart';
 
 class InventoryPage extends StatefulWidget {

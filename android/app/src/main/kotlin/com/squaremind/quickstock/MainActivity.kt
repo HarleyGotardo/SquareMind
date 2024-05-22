@@ -1,4 +1,4 @@
-package com.example.android_mims_development
+package com.squaremind.quickstock
 
 import io.flutter.embedding.android.FlutterActivity
 

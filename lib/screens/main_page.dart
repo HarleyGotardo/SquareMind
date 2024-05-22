@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:android_mims_development/screens/dashboard.dart';
-import 'package:android_mims_development/screens/inventory_management.dart';
-import 'package:android_mims_development/screens/record.dart';
+import 'package:squaremind_quickstock/screens/dashboard.dart';
+import 'package:squaremind_quickstock/screens/inventory_management.dart';
+import 'package:squaremind_quickstock/screens/record.dart';
 import 'login_screen.dart';
-import 'package:android_mims_development/screens/profile.dart';
+import 'package:squaremind_quickstock/screens/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:android_mims_development/services/database_helper.dart';
+import 'package:squaremind_quickstock/services/database_helper.dart';
 
 class MainPage extends StatefulWidget {
   final String email;

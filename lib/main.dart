@@ -1,5 +1,5 @@
-import 'package:android_mims_development/screens/login_screen.dart';
-import 'package:android_mims_development/screens/main_page.dart';
+import 'package:squaremind_quickstock/screens/login_screen.dart';
+import 'package:squaremind_quickstock/screens/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

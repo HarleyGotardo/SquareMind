@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:android_mims_development/services/database_helper.dart'; // Import your database helper
+import 'package:squaremind_quickstock/services/database_helper.dart'; // Import your database helper
 
 class ProfileScreen extends StatefulWidget {
   final String username;

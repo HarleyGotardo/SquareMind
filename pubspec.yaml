@@ -1,5 +1,5 @@
-name: android_mims_development
-description: "A new Flutter project."
+name: squaremind_quickstock
+description: "This mobile application aims to develop an Android-based sales and inventory management system for retail stores. Currently, retail stores manage their inventory and sales using paper-based or non-existent systems. This makes tracking inventory levels and sales data time-consuming as the store grows. This application will allow sari-sari store owners to manage their inventory, record sales transactions, and generate sales reports using a mobile application. Key features include adding, editing, and removing inventory items, recording product sales, and visualizing daily sales and monthly total sales. The system is designed to work offline. As Android is widely used, it will be the exclusive platform. The goal is to provide sari-sari store owners with a simple way to streamline their operations by digitizing paper-based processes. The user interface will be easy to use for all ages. This aims to improve business processes and access to real-time inventory and sales information."
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -28,7 +28,7 @@ dev_dependencies:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/newlogo.png"
+  image_path: "assets/images/app_logo.png"
 
 flutter_lints: ^3.0.1
 

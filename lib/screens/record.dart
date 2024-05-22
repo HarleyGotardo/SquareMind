@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:android_mims_development/services/sales_database_helper.dart';
-import 'package:android_mims_development/services/item_database_helper.dart';
+import 'package:squaremind_quickstock/services/sales_database_helper.dart';
+import 'package:squaremind_quickstock/services/item_database_helper.dart';
 
 class RecordSale extends StatefulWidget {
   final String email;

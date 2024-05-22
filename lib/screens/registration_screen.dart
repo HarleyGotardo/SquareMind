@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart'; // Assuming this file exists in the specified location
-import 'package:android_mims_development/services/database_helper.dart';
-import 'package:android_mims_development/model/user_model.dart';
+import 'package:squaremind_quickstock/services/database_helper.dart';
+import 'package:squaremind_quickstock/model/user_model.dart';
 // ignore: depend_on_referenced_packages
 import 'package:crypto/crypto.dart';
 import 'dart:convert'; // for the utf8.encode method

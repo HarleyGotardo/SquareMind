@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:android_mims_development/model/user_model.dart';
+import 'package:squaremind_quickstock/model/user_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
