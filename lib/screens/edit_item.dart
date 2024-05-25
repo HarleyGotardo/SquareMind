@@ -1,23 +1,18 @@
-import 'package:squaremind_quickstock/services/item_database_helper.dart';
+import 'package:weirdbuggames_quickstock/services/item_database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class EditItemPage extends StatefulWidget {
   final Map<String, dynamic> item;
-  final String email; // Define email property
+  final String email;
 
-  const EditItemPage(
-      {super.key,
-      required this.item,
-      required this.email}); // Store email parameter to email property
+  const EditItemPage({super.key, required this.item, required this.email});
 
   @override
-  // ignore: library_private_types_in_public_api
   _EditItemPageState createState() => _EditItemPageState();
 }
 
 class _EditItemPageState extends State<EditItemPage> {
-  // late TextEditingController nameController;
   late TextEditingController quantityController;
   late TextEditingController priceController;
   ItemDatabaseHelper? db;
@@ -26,7 +21,6 @@ class _EditItemPageState extends State<EditItemPage> {
   void initState() {
     super.initState();
     db = ItemDatabaseHelper(userEmailOrNumber: widget.email);
-    // nameController = TextEditingController(text: widget.item['itemName']);
     quantityController =
         TextEditingController(text: widget.item['quantity'].toString());
     priceController =
@@ -95,7 +89,6 @@ class _EditItemPageState extends State<EditItemPage> {
             ElevatedButton(
               child: const Text('Save'),
               onPressed: () async {
-                // Check if any input field is empty
                 if (quantityController.text.isEmpty ||
                     priceController.text.isEmpty) {
                   showDialog(
@@ -115,22 +108,20 @@ class _EditItemPageState extends State<EditItemPage> {
                       );
                     },
                   );
-                  return; // Do not save if any field is empty
+                  return;
                 }
 
-                // Create a new map with the updated values
                 Map<String, dynamic> updatedItem = {
                   'id': widget.item['id'],
                   'quantity': int.parse(quantityController.text),
                   'price': double.parse(priceController.text),
                 };
 
-                // Call the updateItem function
                 await db?.updateItem(updatedItem['id'], updatedItem);
-                // ignore: use_build_context_synchronously
-                Navigator.pop(context);
+                Navigator.pop(context, true); // Indicate success
               },
-            ),          ],
+            ),
+          ],
         ),
       ),
     );

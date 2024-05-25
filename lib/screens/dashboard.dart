@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:squaremind_quickstock/services/sales_database_helper.dart';
-import 'package:squaremind_quickstock/services/item_database_helper.dart';
+import 'package:weirdbuggames_quickstock/services/sales_database_helper.dart';
+import 'package:weirdbuggames_quickstock/services/item_database_helper.dart';
 import 'package:intl/intl.dart';
 
 class DashboardPage extends StatefulWidget {

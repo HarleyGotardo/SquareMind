@@ -47,7 +47,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.quickstock"
+        applicationId "com.quickstock.weirdbuggames"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()

@@ -1,4 +1,4 @@
-package com.squaremind.quickstock
+package com.weirdbuggames.quickstock
 
 import io.flutter.embedding.android.FlutterActivity
 

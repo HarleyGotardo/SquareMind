@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart'; // Assuming this file exists in the specified location
-import 'package:squaremind_quickstock/services/database_helper.dart';
-import 'package:squaremind_quickstock/model/user_model.dart';
+import 'package:weirdbuggames_quickstock/services/database_helper.dart';
+import 'package:weirdbuggames_quickstock/model/user_model.dart';
 // ignore: depend_on_referenced_packages
 import 'package:crypto/crypto.dart';
 import 'dart:convert'; // for the utf8.encode method
@@ -184,13 +184,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       // Show an error message
                       // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Email already exists!')),
+                        const SnackBar(content: Text('The email you entered already exists. Enter a new one.')),
                       );
                       return;
                     } else {
                       // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Succesfully created account. Please login to continue!')),
+                        const SnackBar(content: Text('Succesfully created account. You can now login to continue.')),
                       );
                     }
 

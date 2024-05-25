@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.squaremind.quickstock">
+    package="com.weirdbuggames.quickstock">
     <application
         android:label="Quick Stock"
         android:name="${applicationName}"

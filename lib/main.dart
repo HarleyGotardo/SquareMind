@@ -1,5 +1,5 @@
-import 'package:squaremind_quickstock/screens/login_screen.dart';
-import 'package:squaremind_quickstock/screens/main_page.dart';
+import 'package:weirdbuggames_quickstock/screens/login_screen.dart';
+import 'package:weirdbuggames_quickstock/screens/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

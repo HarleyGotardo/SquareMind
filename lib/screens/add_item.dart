@@ -1,4 +1,4 @@
-import 'package:squaremind_quickstock/services/item_database_helper.dart';
+import 'package:weirdbuggames_quickstock/services/item_database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

@@ -1,6 +1,6 @@
-import 'package:squaremind_quickstock/screens/add_item.dart';
-import 'package:squaremind_quickstock/screens/edit_item.dart';
-import 'package:squaremind_quickstock/services/item_database_helper.dart';
+import 'package:weirdbuggames_quickstock/screens/add_item.dart';
+import 'package:weirdbuggames_quickstock/screens/edit_item.dart';
+import 'package:weirdbuggames_quickstock/services/item_database_helper.dart';
 import 'package:flutter/material.dart';
 
 class InventoryPage extends StatefulWidget {
@@ -27,14 +27,15 @@ class _InventoryPageState extends State<InventoryPage> {
       }
     });
   }
+
   void refreshPage() async {
-              final itemList = await db.getItems();
-              for (var item in itemList) {
-                await db.checkAndDeleteIfZeroQuantity(item['itemName']);
-              }
-              setState(() {
-                items = db.getItems();
-              });
+    final itemList = await db.getItems();
+    for (var item in itemList) {
+      await db.checkAndDeleteIfZeroQuantity(item['itemName']);
+    }
+    setState(() {
+      items = db.getItems();
+    });
   }
 
   void deleteItem(BuildContext context, Map<String, dynamic> item) {
@@ -76,9 +77,7 @@ class _InventoryPageState extends State<InventoryPage> {
     ).then((value) async {
       if (value != null && value) {
         await db.checkAndDeleteIfZeroQuantity(item['itemName']);
-        setState(() {
-          items = db.getItems();
-        });
+        refreshPage();
       }
     });
   }
